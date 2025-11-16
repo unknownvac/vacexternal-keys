@@ -292,13 +292,27 @@
         const WORKER_URL = "https://vacexternal-keys.outlier872.workers.dev";
         const WORKINK_LINK = "https://work.ink/28kn/vacexternal-4h-key";
 
+        function generateToken() {
+            return 'tok_' + Date.now() + '_' + Math.random().toString(36).substring(2, 15);
+        }
+
         async function generateKey() {
             try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const token = urlParams.get('token') || sessionStorage.getItem('workink_token');
+                
+                if (!token) {
+                    alert('❌ Token inválido. Por favor, complete o processo novamente.');
+                    showStep(1);
+                    return null;
+                }
+                
                 const response = await fetch(WORKER_URL + '/generate-key', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
-                    }
+                    },
+                    body: JSON.stringify({ token: token })
                 });
 
                 const data = await response.json();
@@ -322,16 +336,19 @@
         }
 
         function startProcess() {
+            const token = generateToken();
+            sessionStorage.setItem('workink_token', token);
+            
             showStep(2);
             setTimeout(() => {
-                window.location.href = WORKINK_LINK;
+                window.location.href = WORKINK_LINK + '?redirect=' + encodeURIComponent(window.location.origin + window.location.pathname + '?completed=true&token=' + token);
             }, 2000);
         }
 
         window.addEventListener('load', async function() {
             const urlParams = new URLSearchParams(window.location.search);
             
-            if (urlParams.get('completed') === 'true') {
+            if (urlParams.get('completed') === 'true' && urlParams.get('token')) {
                 showStep(3);
                 
                 const key = await generateKey();
