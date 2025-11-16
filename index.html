@@ -289,11 +289,9 @@
     </div>
 
     <script>
-        // ===== CONFIGURAÇÕES - EDITE APENAS AQUI =====
-        const WORKER_URL = "https://vacexternal-keys.outlier872.workers.dev"; // ✅ URL do Worker
-        const WORKINK_LINK = "https://work.ink/SEU-LINK"; // Seu link do Work.ink
+        const WORKER_URL = "https://vacexternal-keys.outlier872.workers.dev";
+        const WORKINK_LINK = "https://work.ink/28kn/vacexternal-4h-key";
 
-        // Gerar key via backend seguro (Cloudflare Worker)
         async function generateKey() {
             try {
                 const response = await fetch(WORKER_URL + '/generate-key', {
@@ -316,7 +314,6 @@
             }
         }
 
-        // Iniciar processo
         function startProcess() {
             showStep(2);
             setTimeout(() => {
@@ -324,15 +321,12 @@
             }, 2000);
         }
 
-        // Verificar se voltou do Work.ink
         window.addEventListener('load', async function() {
             const urlParams = new URLSearchParams(window.location.search);
             
-            // Parâmetro 'completed=true' indica que veio do Work.ink
             if (urlParams.get('completed') === 'true') {
                 showStep(3);
                 
-                // Gerar key via backend seguro
                 const key = await generateKey();
                 
                 if (key) {
@@ -345,7 +339,6 @@
             }
         });
 
-        // Copiar key
         function copyKey() {
             const keyText = document.getElementById('generatedKey').textContent;
             navigator.clipboard.writeText(keyText).then(() => {
@@ -367,7 +360,6 @@
             });
         }
 
-        // Mostrar step específico
         function showStep(stepNumber) {
             document.querySelectorAll('.step').forEach(step => {
                 step.classList.remove('active');
