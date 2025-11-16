@@ -306,7 +306,14 @@
                 if (data.success) {
                     return data.key;
                 } else {
-                    throw new Error(data.error || 'Erro ao gerar key');
+                    console.error('Erro do servidor:', data.error);
+                    
+                    if (response.status === 429) {
+                        alert('⏰ Você já gerou uma key recentemente!\n\n' + data.error);
+                    } else {
+                        alert('❌ Erro: ' + data.error);
+                    }
+                    return null;
                 }
             } catch (error) {
                 console.error('Erro:', error);
@@ -333,7 +340,11 @@
                     document.getElementById('generatedKey').textContent = key;
                     showStep(4);
                 } else {
-                    alert('❌ Erro ao gerar key. Por favor, tente novamente ou entre em contato no Discord.');
+                    const errorDiv = document.createElement('div');
+                    errorDiv.style.cssText = 'background: rgba(255,0,0,0.2); padding: 15px; margin: 20px; border-radius: 8px; color: #fff; font-family: monospace; font-size: 12px; white-space: pre-wrap; word-break: break-all;';
+                    errorDiv.textContent = 'Erro detalhado: Verifique o console (F12)';
+                    document.querySelector('.container').appendChild(errorDiv);
+                    alert('❌ Erro ao gerar key. Abra o console (F12) e tire print do erro para o Discord.');
                     showStep(1);
                 }
             }
