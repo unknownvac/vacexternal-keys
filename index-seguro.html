@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VacExternal - Free Key (4h)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(20, 20, 30, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 140, 0, 0.3);
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo h1 {
+            font-size: 42px;
+            background: linear-gradient(135deg, #ff8c00, #ff4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .logo p {
+            color: #888;
+            font-size: 16px;
+        }
+        .info-box {
+            background: rgba(255, 140, 0, 0.1);
+            border-left: 4px solid #ff8c00;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .info-box h3 {
+            color: #ff8c00;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        .info-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .info-box ul li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 15px;
+        }
+        .info-box ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ff8c00;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 20px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff8c00, #ff4500);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 140, 0, 0.5);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .key-display {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            text-align: center;
+            border: 3px dashed #ff8c00;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { border-color: #ff8c00; }
+            50% { border-color: #ff4500; }
+        }
+        .key-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff8c00;
+            letter-spacing: 3px;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+            margin-bottom: 15px;
+        }
+        .copy-btn {
+            background: rgba(255, 140, 0, 0.2);
+            color: #ff8c00;
+            border: 2px solid #ff8c00;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .copy-btn:hover {
+            background: #ff8c00;
+            color: #000;
+            transform: scale(1.05);
+        }
+        .loading {
+            text-align: center;
+            padding: 50px 0;
+        }
+        .spinner {
+            border: 5px solid rgba(255, 140, 0, 0.2);
+            border-top: 5px solid #ff8c00;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 25px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loading h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .warning {
+            background: rgba(255, 0, 0, 0.1);
+            border-left: 4px solid #ff0000;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            color: #ffaaaa;
+        }
+        .warning strong {
+            color: #ff6666;
+        }
+        .step {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+        .step.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .footer {
+            text-align: center;
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 140, 0, 0.2);
+            color: #666;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #ff8c00;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>🎮 VacExternal</h1>
+            <p>Gerador de Key Gratuita</p>
+        </div>
+
+        <!-- Step 1: Welcome -->
+        <div id="step1" class="step active">
+            <div class="info-box">
+                <h3>🎁 Versão Gratuita - 4 Horas</h3>
+                <ul>
+                    <li>Acesso completo por 4 horas</li>
+                    <li>Todas as features desbloqueadas</li>
+                    <li>Suporte via Discord</li>
+                    <li>1 key por dispositivo/IP</li>
+                </ul>
+            </div>
+
+            <div class="warning">
+                <strong>⚠️ ATENÇÃO:</strong> Você será redirecionado para completar alguns anúncios. 
+                Aguarde até o final para receber sua key gratuitamente!
+            </div>
+
+            <button class="btn" onclick="startProcess()">🚀 Gerar Key Grátis</button>
+        </div>
+
+        <!-- Step 2: Redirecting -->
+        <div id="step2" class="step">
+            <div class="loading">
+                <div class="spinner"></div>
+                <h3>Redirecionando...</h3>
+                <p style="color: #888; margin-top: 10px;">
+                    Aguarde enquanto você é redirecionado para completar os anúncios
+                </p>
+            </div>
+        </div>
+
+        <!-- Step 3: Generating Key -->
+        <div id="step3" class="step">
+            <div class="loading">
+                <div class="spinner"></div>
+                <h3>Gerando sua key...</h3>
+                <p style="color: #888; margin-top: 10px;">
+                    Criando licença no KeyAuth... Aguarde alguns segundos
+                </p>
+            </div>
+        </div>
+
+        <!-- Step 4: Success -->
+        <div id="step4" class="step">
+            <div class="info-box">
+                <h3>✅ Key Gerada com Sucesso!</h3>
+                <p>Copie a key abaixo e cole no programa VacExternal (Opção 4)</p>
+            </div>
+
+            <div class="key-display">
+                <div class="key-text" id="generatedKey">Gerando...</div>
+                <button class="copy-btn" onclick="copyKey()">📋 Copiar Key</button>
+            </div>
+
+            <div class="info-box">
+                <h3>📝 Como usar:</h3>
+                <ul>
+                    <li>Abra o VacExternal.exe</li>
+                    <li>Selecione a opção <strong>[4] Free Version (4h)</strong></li>
+                    <li>Cole a key quando solicitado</li>
+                    <li>Aproveite por 4 horas!</li>
+                </ul>
+            </div>
+
+            <p style="text-align: center; margin-top: 25px; color: #ff8c00; font-weight: bold; font-size: 16px;">
+                ⏰ Válida por 4 horas a partir da ativação
+            </p>
+        </div>
+
+        <div class="footer">
+            <p><strong>VacExternal</strong> © 2025 - Todos os direitos reservados</p>
+            <p style="margin-top: 10px;">
+                Suporte e atualizações: 
+                <a href="https://discord.gg/vacexternal" target="_blank">discord.gg/vacexternal</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // ===== CONFIGURAÇÕES - EDITE APENAS AQUI =====
+        const WORKER_URL = "https://vacexternal-keys.outlier872.workers.dev"; // ✅ URL do Worker
+        const WORKINK_LINK = "https://work.ink/SEU-LINK"; // Seu link do Work.ink
+
+        // Gerar key via backend seguro (Cloudflare Worker)
+        async function generateKey() {
+            try {
+                const response = await fetch(WORKER_URL + '/generate-key', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    return data.key;
+                } else {
+                    throw new Error(data.error || 'Erro ao gerar key');
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                return null;
+            }
+        }
+
+        // Iniciar processo
+        function startProcess() {
+            showStep(2);
+            setTimeout(() => {
+                window.location.href = WORKINK_LINK;
+            }, 2000);
+        }
+
+        // Verificar se voltou do Work.ink
+        window.addEventListener('load', async function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Parâmetro 'completed=true' indica que veio do Work.ink
+            if (urlParams.get('completed') === 'true') {
+                showStep(3);
+                
+                // Gerar key via backend seguro
+                const key = await generateKey();
+                
+                if (key) {
+                    document.getElementById('generatedKey').textContent = key;
+                    showStep(4);
+                } else {
+                    alert('❌ Erro ao gerar key. Por favor, tente novamente ou entre em contato no Discord.');
+                    showStep(1);
+                }
+            }
+        });
+
+        // Copiar key
+        function copyKey() {
+            const keyText = document.getElementById('generatedKey').textContent;
+            navigator.clipboard.writeText(keyText).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Copiado!';
+                btn.style.background = 'linear-gradient(135deg, #00ff00, #00aa00)';
+                btn.style.color = '#fff';
+                btn.style.borderColor = '#00ff00';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                    btn.style.color = '';
+                    btn.style.borderColor = '';
+                }, 2500);
+            }).catch(() => {
+                alert('Erro ao copiar. Selecione e copie manualmente: ' + keyText);
+            });
+        }
+
+        // Mostrar step específico
+        function showStep(stepNumber) {
+            document.querySelectorAll('.step').forEach(step => {
+                step.classList.remove('active');
+            });
+            document.getElementById('step' + stepNumber).classList.add('active');
+        }
+    </script>
+</body>
+</html>
