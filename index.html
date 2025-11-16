@@ -299,15 +299,26 @@
         async function generateKey() {
             try {
                 const urlParams = new URLSearchParams(window.location.search);
-                const token = urlParams.get('token') || sessionStorage.getItem('workink_token');
+                // Prioriza sessionStorage ao invés da URL
+                const token = sessionStorage.getItem('workink_token');
+                const timestamp = sessionStorage.getItem('workink_timestamp');
                 
-                console.log('🔍 Debug - Token encontrado:', token ? token.substring(0, 20) + '...' : 'NENHUM');
-                console.log('🔍 Debug - URL Params:', window.location.search);
-                console.log('🔍 Debug - SessionStorage:', sessionStorage.getItem('workink_token') ? 'TEM TOKEN' : 'SEM TOKEN');
+                console.log('🔍 Debug - Token do sessionStorage:', token ? token.substring(0, 20) + '...' : 'NENHUM');
+                console.log('🔍 Debug - Timestamp:', timestamp);
+                console.log('🔍 Debug - Tempo desde geração:', timestamp ? ((Date.now() - parseInt(timestamp)) / 1000).toFixed(0) + 's' : 'N/A');
                 
                 if (!token) {
-                    console.error('❌ Token não encontrado!');
-                    alert('❌ Token inválido. Por favor, complete o processo novamente.');
+                    console.error('❌ Token não encontrado no sessionStorage!');
+                    alert('❌ Token expirou ou não foi gerado corretamente.\n\nPor favor, clique em "Gerar Key Grátis" novamente.');
+                    showStep(1);
+                    return null;
+                }
+                
+                // Verifica se o token não está muito antigo (mais de 10 minutos)
+                if (timestamp && (Date.now() - parseInt(timestamp)) > 600000) {
+                    console.error('⏰ Token expirado (mais de 10 minutos)');
+                    alert('⏰ O processo demorou muito tempo.\n\nPor favor, comece novamente.');
+                    sessionStorage.clear();
                     showStep(1);
                     return null;
                 }
@@ -329,6 +340,9 @@
                 
                 if (data.success) {
                     console.log('✅ Key gerada com sucesso:', data.key);
+                    // Limpa o token após usar
+                    sessionStorage.removeItem('workink_token');
+                    sessionStorage.removeItem('workink_timestamp');
                     return data.key;
                 } else {
                     console.error('❌ Erro do servidor:', data.error);
@@ -352,31 +366,59 @@
         function startProcess() {
             const token = generateToken();
             sessionStorage.setItem('workink_token', token);
+            sessionStorage.setItem('workink_timestamp', Date.now().toString());
+            
+            console.log('🎫 Token gerado e salvo:', token.substring(0, 20) + '...');
             
             showStep(2);
             setTimeout(() => {
-                window.location.href = WORKINK_LINK + '?redirect=' + encodeURIComponent(window.location.origin + window.location.pathname + '?completed=true&token=' + token);
+                // Não passa mais o token na URL, usa apenas sessionStorage
+                window.location.href = WORKINK_LINK + '?redirect=' + encodeURIComponent(window.location.origin + window.location.pathname + '?completed=true');
             }, 2000);
         }
 
         window.addEventListener('load', async function() {
             const urlParams = new URLSearchParams(window.location.search);
             
-            if (urlParams.get('completed') === 'true' && urlParams.get('token')) {
+            console.log('🌐 Página carregada!');
+            console.log('🔍 URL completa:', window.location.href);
+            console.log('🔍 Parâmetros URL:', window.location.search);
+            console.log('🔍 Completed?', urlParams.get('completed'));
+            console.log('🔍 Token no sessionStorage?', sessionStorage.getItem('workink_token') ? 'SIM' : 'NÃO');
+            
+            if (urlParams.get('completed') === 'true') {
+                const hasToken = sessionStorage.getItem('workink_token');
+                
+                if (!hasToken) {
+                    console.error('❌ Completed=true mas sem token no sessionStorage!');
+                    alert('❌ Erro: Token não encontrado!\n\nPossíveis causas:\n- Navegação privada/anônima\n- Cookies/Storage bloqueados\n- Sessão expirada\n\nTente novamente em uma janela normal do navegador.');
+                    showStep(1);
+                    return;
+                }
+                
+                console.log('✅ Condições atendidas! Iniciando geração...');
                 showStep(3);
                 
                 const key = await generateKey();
                 
                 if (key) {
+                    console.log('🎉 Key gerada e exibida com sucesso!');
                     document.getElementById('generatedKey').textContent = key;
                     showStep(4);
                 } else {
+                    console.error('❌ Falha ao gerar key!');
                     const errorDiv = document.createElement('div');
                     errorDiv.style.cssText = 'background: rgba(255,0,0,0.2); padding: 15px; margin: 20px; border-radius: 8px; color: #fff; font-family: monospace; font-size: 12px; white-space: pre-wrap; word-break: break-all;';
-                    errorDiv.textContent = 'Erro detalhado: Verifique o console (F12)';
+                    errorDiv.textContent = '❌ Erro ao gerar key!\n\nAbra o console do navegador (pressione F12) e tire um print dos logs em vermelho.\nEnvie no Discord: discord.gg/vacexternal';
                     document.querySelector('.container').appendChild(errorDiv);
-                    alert('❌ Erro ao gerar key. Abra o console (F12) e tire print do erro para o Discord.');
                     showStep(1);
+                }
+            } else {
+                console.log('ℹ️ Usuário na página inicial (sem completed)');
+                // Limpa tokens antigos se estiver na página inicial
+                if (!urlParams.get('completed')) {
+                    sessionStorage.removeItem('workink_token');
+                    sessionStorage.removeItem('workink_timestamp');
                 }
             }
         });
