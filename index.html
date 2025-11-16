@@ -301,11 +301,18 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const token = urlParams.get('token') || sessionStorage.getItem('workink_token');
                 
+                console.log('🔍 Debug - Token encontrado:', token ? token.substring(0, 20) + '...' : 'NENHUM');
+                console.log('🔍 Debug - URL Params:', window.location.search);
+                console.log('🔍 Debug - SessionStorage:', sessionStorage.getItem('workink_token') ? 'TEM TOKEN' : 'SEM TOKEN');
+                
                 if (!token) {
+                    console.error('❌ Token não encontrado!');
                     alert('❌ Token inválido. Por favor, complete o processo novamente.');
                     showStep(1);
                     return null;
                 }
+                
+                console.log('📡 Enviando requisição para:', WORKER_URL + '/generate-key');
                 
                 const response = await fetch(WORKER_URL + '/generate-key', {
                     method: 'POST',
@@ -315,22 +322,29 @@
                     body: JSON.stringify({ token: token })
                 });
 
+                console.log('📥 Resposta recebida - Status:', response.status);
+                
                 const data = await response.json();
+                console.log('📦 Dados recebidos:', data);
                 
                 if (data.success) {
+                    console.log('✅ Key gerada com sucesso:', data.key);
                     return data.key;
                 } else {
-                    console.error('Erro do servidor:', data.error);
+                    console.error('❌ Erro do servidor:', data.error);
                     
                     if (response.status === 429) {
                         alert('⏰ Você já gerou uma key recentemente!\n\n' + data.error);
+                    } else if (response.status === 403) {
+                        alert('🚫 ' + data.error + '\n\nPor favor, complete o processo novamente.');
                     } else {
-                        alert('❌ Erro: ' + data.error);
+                        alert('❌ Erro: ' + data.error + '\n\nTire print do console (F12) e envie no Discord.');
                     }
                     return null;
                 }
             } catch (error) {
-                console.error('Erro:', error);
+                console.error('💥 Erro fatal:', error);
+                alert('❌ Erro ao conectar com servidor!\n\nDetalhes: ' + error.message + '\n\nTire print do console (F12) e envie no Discord.');
                 return null;
             }
         }
