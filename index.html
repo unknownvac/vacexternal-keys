@@ -21,7 +21,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 600px;
+            max-width: 650px;
             width: 100%;
             background: rgba(20, 20, 30, 0.95);
             border-radius: 20px;
@@ -87,7 +87,7 @@
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s;
-            margin-top: 25px;
+            margin-top: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -98,92 +98,74 @@
         .btn:active {
             transform: translateY(0);
         }
+        .btn-secondary {
+            background: linear-gradient(135deg, #4a90e2, #357abd);
+        }
+        .btn-secondary:hover {
+            box-shadow: 0 15px 40px rgba(74, 144, 226, 0.5);
+        }
+        .step {
+            display: none;
+        }
+        .step.active {
+            display: block;
+        }
         .key-display {
             background: rgba(0, 0, 0, 0.4);
             padding: 25px;
             border-radius: 12px;
             margin: 25px 0;
-            text-align: center;
-            border: 3px dashed #ff8c00;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { border-color: #ff8c00; }
-            50% { border-color: #ff4500; }
+            border: 2px solid rgba(255, 140, 0, 0.5);
         }
         .key-text {
-            font-size: 28px;
-            font-weight: bold;
-            color: #ff8c00;
-            letter-spacing: 3px;
             font-family: 'Courier New', monospace;
+            font-size: 22px;
+            color: #ff8c00;
+            text-align: center;
             word-break: break-all;
-            margin-bottom: 15px;
+            font-weight: bold;
+            padding: 15px;
+            background: rgba(255, 140, 0, 0.1);
+            border-radius: 8px;
         }
         .copy-btn {
-            background: rgba(255, 140, 0, 0.2);
+            width: 100%;
+            padding: 15px;
+            margin-top: 15px;
+            background: transparent;
             color: #ff8c00;
             border: 2px solid #ff8c00;
-            padding: 12px 30px;
             border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
+            cursor: pointer;
             transition: all 0.3s;
         }
         .copy-btn:hover {
-            background: #ff8c00;
-            color: #000;
-            transform: scale(1.05);
+            background: rgba(255, 140, 0, 0.2);
+            transform: scale(1.02);
         }
         .loading {
             text-align: center;
-            padding: 50px 0;
+            padding: 40px;
         }
-        .spinner {
+        .loading .spinner {
             border: 5px solid rgba(255, 140, 0, 0.2);
             border-top: 5px solid #ff8c00;
             border-radius: 50%;
             width: 60px;
             height: 60px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 25px;
+            margin: 0 auto 25px auto;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .loading h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        .warning {
-            background: rgba(255, 0, 0, 0.1);
-            border-left: 4px solid #ff0000;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-            color: #ffaaaa;
-        }
-        .warning strong {
-            color: #ff6666;
-        }
-        .step {
-            display: none;
-            animation: fadeIn 0.5s ease-in;
-        }
-        .step.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .loading p {
+            font-size: 18px;
+            color: #ff8c00;
+            font-weight: bold;
         }
         .footer {
             text-align: center;
@@ -196,64 +178,141 @@
         .footer a {
             color: #ff8c00;
             text-decoration: none;
-            font-weight: bold;
+            transition: all 0.3s;
         }
         .footer a:hover {
-            text-decoration: underline;
+            color: #ff4500;
+        }
+        .method-divider {
+            text-align: center;
+            margin: 25px 0;
+            color: #888;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .progress-bar {
+            background: rgba(255, 140, 0, 0.2);
+            height: 8px;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #ff8c00, #ff4500);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .step-indicator {
+            text-align: center;
+            color: #ff8c00;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="logo">
-            <h1>🎮 VacExternal</h1>
-            <p>Gerador de Key Gratuita</p>
+            <h1>VacExternal</h1>
+            <p>Sistema de Keys Gratuitas (4 Horas)</p>
         </div>
 
-        <!-- Step 1: Welcome -->
         <div id="step1" class="step active">
             <div class="info-box">
-                <h3>🎁 Versão Gratuita - 4 Horas</h3>
+                <h3>🎁 Escolha o Método para Obter sua Key</h3>
+                <p style="margin-bottom: 15px;">Selecione uma das opções abaixo para gerar sua key gratuita de 4 horas:</p>
                 <ul>
                     <li>Acesso completo por 4 horas</li>
-                    <li>Todas as features desbloqueadas</li>
-                    <li>Suporte via Discord</li>
-                    <li>1 key por dispositivo/IP</li>
+                    <li>Todos os recursos desbloqueados</li>
+                    <li>Sem limites durante o período</li>
+                    <li>Renovável após expiração</li>
                 </ul>
             </div>
 
-            <div class="warning">
-                <strong>⚠️ ATENÇÃO:</strong> Você será redirecionado para completar alguns anúncios. 
-                Aguarde até o final para receber sua key gratuitamente!
-            </div>
+            <button class="btn" onclick="startWorkinkProcess()">
+                🔗 Opção 1: Work.ink (2 Links)
+            </button>
+            <p style="text-align: center; margin-top: 8px; color: #888; font-size: 13px;">
+                Mais rápido • 2 páginas curtas • ⏰ <strong>4 horas</strong> de acesso
+            </p>
 
-            <button class="btn" onclick="startProcess()">🚀 Gerar Key Grátis</button>
+            <div class="method-divider">OU</div>
+
+            <button class="btn btn-secondary" onclick="startLinkvertiseProcess()">
+                🌐 Opção 2: Linkvertise (1 Link)
+            </button>
+            <p style="text-align: center; margin-top: 8px; color: #4a90e2; font-size: 13px;">
+                Recomendado • 1 página completa • ⏰ <strong style="color: #4a90e2;">8 HORAS</strong> de acesso
+            </p>
         </div>
 
-        <!-- Step 2: Redirecting -->
         <div id="step2" class="step">
+            <div class="step-indicator">📍 Passo 1 de 2</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 50%;"></div>
+            </div>
+            <div class="info-box">
+                <h3>🔗 Complete o Primeiro Link (Work.ink)</h3>
+                <p style="margin-bottom: 15px;"><strong>Instruções:</strong></p>
+                <ul>
+                    <li>Clique no botão abaixo</li>
+                    <li>Complete a verificação do Work.ink</li>
+                    <li>Aguarde até ser redirecionado automaticamente</li>
+                    <li>NÃO feche esta página!</li>
+                </ul>
+            </div>
             <div class="loading">
-                <div class="spinner"></div>
-                <h3>Redirecionando...</h3>
-                <p style="color: #888; margin-top: 10px;">
-                    Aguarde enquanto você é redirecionado para completar os anúncios
-                </p>
+                <p>Redirecionando para o primeiro link...</p>
             </div>
         </div>
 
-        <!-- Step 3: Generating Key -->
         <div id="step3" class="step">
+            <div class="step-indicator">📍 Passo 2 de 2</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 100%;"></div>
+            </div>
+            <div class="info-box">
+                <h3>✅ Último Passo! (Work.ink #2)</h3>
+                <p style="margin-bottom: 15px;"><strong>Quase lá! Falta apenas este último link:</strong></p>
+                <ul>
+                    <li>Complete este segundo link</li>
+                    <li>Aguarde o redirecionamento automático</li>
+                    <li>Sua key será gerada em seguida!</li>
+                </ul>
+            </div>
+            <div class="loading">
+                <p>Redirecionando para o segundo link...</p>
+            </div>
+        </div>
+
+        <div id="step4" class="step">
+            <div class="info-box">
+                <h3>🌐 Complete o Link (Linkvertise)</h3>
+                <p style="margin-bottom: 15px;"><strong>Instruções:</strong></p>
+                <ul>
+                    <li>Clique no botão abaixo</li>
+                    <li>Complete a verificação do Linkvertise</li>
+                    <li>Aguarde até ser redirecionado automaticamente</li>
+                    <li>NÃO feche esta página!</li>
+                </ul>
+            </div>
+            <div class="loading">
+                <p>Redirecionando para Linkvertise...</p>
+            </div>
+        </div>
+
+        <div id="step5" class="step">
             <div class="loading">
                 <div class="spinner"></div>
-                <h3>Gerando sua key...</h3>
-                <p style="color: #888; margin-top: 10px;">
+                <p>
                     Criando licença no KeyAuth... Aguarde alguns segundos
                 </p>
             </div>
         </div>
 
-        <!-- Step 4: Success -->
-        <div id="step4" class="step">
+        <div id="step6" class="step">
             <div class="info-box">
                 <h3>✅ Key Gerada com Sucesso!</h3>
                 <p>Copie a key abaixo e cole no programa VacExternal (Opção 4)</p>
@@ -268,15 +327,27 @@
                 <h3>📝 Como usar:</h3>
                 <ul>
                     <li>Abra o VacExternal.exe</li>
-                    <li>Selecione a opção <strong>[4] Free Version (4h)</strong></li>
+                    <li>Selecione a opção <strong>[4] Free Version</strong></li>
                     <li>Cole a key quando solicitado</li>
-                    <li>Aproveite por 4 horas!</li>
+                    <li>Aproveite seu acesso!</li>
                 </ul>
             </div>
 
-            <p style="text-align: center; margin-top: 25px; color: #ff8c00; font-weight: bold; font-size: 16px;">
-                ⏰ Válida por 4 horas a partir da ativação
+            <p id="keyDurationMessage" style="text-align: center; margin-top: 25px; color: #ff8c00; font-weight: bold; font-size: 16px;">
+                ⏰ Duração da key será exibida aqui
             </p>
+            
+            <script>
+                const usedMethod = sessionStorage.getItem('key_method');
+                const durationMsg = document.getElementById('keyDurationMessage');
+                if (usedMethod === 'linkvertise') {
+                    durationMsg.textContent = '⏰ Válida por 8 HORAS a partir da ativação';
+                    durationMsg.style.color = '#4a90e2';
+                } else {
+                    durationMsg.textContent = '⏰ Válida por 4 horas a partir da ativação';
+                    durationMsg.style.color = '#ff8c00';
+                }
+            </script>
         </div>
 
         <div class="footer">
@@ -290,31 +361,62 @@
 
     <script>
         const WORKER_URL = "https://vacexternal-keys.outlier872.workers.dev";
-        const WORKINK_LINK = "https://work.ink/28kn/vacexternal-4h-key";
+        const WORKINK_LINK_1 = "https://work.ink/28kn/vacexternal-4h-key";
+        const WORKINK_LINK_2 = "https://work.ink/28kn/vacexternal-get-key";
+        const LINKVERTISE_LINK = "https://link-center.net/1209215/Z30kIRzDxVHY";
 
         function generateToken() {
             return 'tok_' + Date.now() + '_' + Math.random().toString(36).substring(2, 15);
         }
 
+        function startWorkinkProcess() {
+            const token = generateToken();
+            sessionStorage.setItem('workink_token', token);
+            sessionStorage.setItem('workink_timestamp', Date.now().toString());
+            sessionStorage.setItem('key_method', 'workink');
+            sessionStorage.setItem('workink_step', '1');
+            
+            console.log('🎫 Token gerado (Workink):', token.substring(0, 20) + '...');
+            
+            showStep(2);
+            setTimeout(() => {
+                window.location.href = WORKINK_LINK_1 + '?redirect=' + encodeURIComponent(window.location.origin + window.location.pathname + '?completed=step1');
+            }, 2000);
+        }
+
+        function startLinkvertiseProcess() {
+            const token = generateToken();
+            sessionStorage.setItem('workink_token', token);
+            sessionStorage.setItem('workink_timestamp', Date.now().toString());
+            sessionStorage.setItem('key_method', 'linkvertise');
+            
+            console.log('🎫 Token gerado (Linkvertise):', token.substring(0, 20) + '...');
+            
+            showStep(4);
+            setTimeout(() => {
+                window.location.href = LINKVERTISE_LINK;
+            }, 2000);
+        }
+
         async function generateKey() {
             try {
-                const urlParams = new URLSearchParams(window.location.search);
-                // Prioriza sessionStorage ao invés da URL
                 const token = sessionStorage.getItem('workink_token');
                 const timestamp = sessionStorage.getItem('workink_timestamp');
+                const method = sessionStorage.getItem('key_method');
+                const linkvertiseHash = sessionStorage.getItem('linkvertise_hash');
                 
-                console.log('🔍 Debug - Token do sessionStorage:', token ? token.substring(0, 20) + '...' : 'NENHUM');
+                console.log('🔍 Debug - Método:', method);
+                console.log('🔍 Debug - Token:', token ? token.substring(0, 20) + '...' : 'NENHUM');
                 console.log('🔍 Debug - Timestamp:', timestamp);
-                console.log('🔍 Debug - Tempo desde geração:', timestamp ? ((Date.now() - parseInt(timestamp)) / 1000).toFixed(0) + 's' : 'N/A');
+                console.log('🔍 Debug - Linkvertise Hash:', linkvertiseHash ? linkvertiseHash.substring(0, 20) + '...' : 'Nenhum');
                 
                 if (!token) {
-                    console.error('❌ Token não encontrado no sessionStorage!');
-                    alert('❌ Token expirou ou não foi gerado corretamente.\n\nPor favor, clique em "Gerar Key Grátis" novamente.');
+                    console.error('❌ Token não encontrado!');
+                    alert('❌ Token expirou ou não foi gerado corretamente.\n\nPor favor, comece novamente.');
                     showStep(1);
                     return null;
                 }
                 
-                // Verifica se o token não está muito antigo (mais de 10 minutos)
                 if (timestamp && (Date.now() - parseInt(timestamp)) > 600000) {
                     console.error('⏰ Token expirado (mais de 10 minutos)');
                     alert('⏰ O processo demorou muito tempo.\n\nPor favor, comece novamente.');
@@ -325,12 +427,21 @@
                 
                 console.log('📡 Enviando requisição para:', WORKER_URL + '/generate-key');
                 
+                const requestBody = { 
+                    token: token, 
+                    method: method
+                };
+                
+                if (linkvertiseHash) {
+                    requestBody.linkvertiseHash = linkvertiseHash;
+                }
+                
                 const response = await fetch(WORKER_URL + '/generate-key', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ token: token })
+                    body: JSON.stringify(requestBody)
                 });
 
                 console.log('📥 Resposta recebida - Status:', response.status);
@@ -340,9 +451,8 @@
                 
                 if (data.success) {
                     console.log('✅ Key gerada com sucesso:', data.key);
-                    // Limpa o token após usar
-                    sessionStorage.removeItem('workink_token');
-                    sessionStorage.removeItem('workink_timestamp');
+                    console.log('⏰ Duração:', data.duration);
+                    sessionStorage.clear();
                     return data.key;
                 } else {
                     console.error('❌ Erro do servidor:', data.error);
@@ -352,74 +462,86 @@
                     } else if (response.status === 403) {
                         alert('🚫 ' + data.error + '\n\nPor favor, complete o processo novamente.');
                     } else {
-                        alert('❌ Erro: ' + data.error + '\n\nTire print do console (F12) e envie no Discord.');
+                        alert('❌ Erro: ' + data.error);
                     }
                     return null;
                 }
             } catch (error) {
                 console.error('💥 Erro fatal:', error);
-                alert('❌ Erro ao conectar com servidor!\n\nDetalhes: ' + error.message + '\n\nTire print do console (F12) e envie no Discord.');
+                alert('❌ Erro ao conectar com servidor!\n\nDetalhes: ' + error.message);
                 return null;
             }
         }
 
-        function startProcess() {
-            const token = generateToken();
-            sessionStorage.setItem('workink_token', token);
-            sessionStorage.setItem('workink_timestamp', Date.now().toString());
-            
-            console.log('🎫 Token gerado e salvo:', token.substring(0, 20) + '...');
-            
-            showStep(2);
-            setTimeout(() => {
-                // Não passa mais o token na URL, usa apenas sessionStorage
-                window.location.href = WORKINK_LINK + '?redirect=' + encodeURIComponent(window.location.origin + window.location.pathname + '?completed=true');
-            }, 2000);
-        }
-
         window.addEventListener('load', async function() {
             const urlParams = new URLSearchParams(window.location.search);
+            const completed = urlParams.get('completed');
+            const linkvertiseHash = urlParams.get('hash');
             
             console.log('🌐 Página carregada!');
-            console.log('🔍 URL completa:', window.location.href);
-            console.log('🔍 Parâmetros URL:', window.location.search);
-            console.log('🔍 Completed?', urlParams.get('completed'));
-            console.log('🔍 Token no sessionStorage?', sessionStorage.getItem('workink_token') ? 'SIM' : 'NÃO');
+            console.log('🔍 Completed:', completed);
+            console.log('🔍 Linkvertise Hash:', linkvertiseHash ? linkvertiseHash.substring(0, 20) + '...' : 'Nenhum');
             
-            if (urlParams.get('completed') === 'true') {
+            if (completed === 'step1') {
+                const method = sessionStorage.getItem('key_method');
+                if (method === 'workink') {
+                    console.log('✅ Step 1 completo, indo para Step 2...');
+                    sessionStorage.setItem('workink_step', '2');
+                    showStep(3);
+                    setTimeout(() => {
+                        window.location.href = WORKINK_LINK_2 + '?redirect=' + encodeURIComponent(window.location.origin + window.location.pathname + '?completed=step2');
+                    }, 2000);
+                }
+            } else if (completed === 'step2') {
                 const hasToken = sessionStorage.getItem('workink_token');
                 
                 if (!hasToken) {
-                    console.error('❌ Completed=true mas sem token no sessionStorage!');
-                    alert('❌ Erro: Token não encontrado!\n\nPossíveis causas:\n- Navegação privada/anônima\n- Cookies/Storage bloqueados\n- Sessão expirada\n\nTente novamente em uma janela normal do navegador.');
+                    console.error('❌ Token não encontrado!');
+                    alert('❌ Erro: Token não encontrado!\n\nTente novamente em uma janela normal do navegador.');
                     showStep(1);
                     return;
                 }
                 
-                console.log('✅ Condições atendidas! Iniciando geração...');
-                showStep(3);
+                console.log('✅ Workink completo! Gerando key de 4 horas...');
+                showStep(5);
                 
                 const key = await generateKey();
                 
                 if (key) {
-                    console.log('🎉 Key gerada e exibida com sucesso!');
+                    console.log('🎉 Key de 4h gerada com sucesso!');
                     document.getElementById('generatedKey').textContent = key;
-                    showStep(4);
+                    showStep(6);
                 } else {
                     console.error('❌ Falha ao gerar key!');
-                    const errorDiv = document.createElement('div');
-                    errorDiv.style.cssText = 'background: rgba(255,0,0,0.2); padding: 15px; margin: 20px; border-radius: 8px; color: #fff; font-family: monospace; font-size: 12px; white-space: pre-wrap; word-break: break-all;';
-                    errorDiv.textContent = '❌ Erro ao gerar key!\n\nAbra o console do navegador (pressione F12) e tire um print dos logs em vermelho.\nEnvie no Discord: discord.gg/vacexternal';
-                    document.querySelector('.container').appendChild(errorDiv);
+                    showStep(1);
+                }
+            } else if (linkvertiseHash) {
+                const hasToken = sessionStorage.getItem('workink_token');
+                
+                if (!hasToken) {
+                    console.error('❌ Token não encontrado!');
+                    alert('❌ Erro: Token não encontrado!\n\nTente novamente.');
+                    showStep(1);
+                    return;
+                }
+                
+                console.log('✅ Linkvertise completo! Hash recebido, gerando key de 8 horas...');
+                sessionStorage.setItem('linkvertise_hash', linkvertiseHash);
+                showStep(5);
+                
+                const key = await generateKey();
+                
+                if (key) {
+                    console.log('🎉 Key de 8h gerada com sucesso!');
+                    document.getElementById('generatedKey').textContent = key;
+                    showStep(6);
+                } else {
+                    console.error('❌ Falha ao gerar key!');
                     showStep(1);
                 }
             } else {
-                console.log('ℹ️ Usuário na página inicial (sem completed)');
-                // Limpa tokens antigos se estiver na página inicial
-                if (!urlParams.get('completed')) {
-                    sessionStorage.removeItem('workink_token');
-                    sessionStorage.removeItem('workink_timestamp');
-                }
+                console.log('ℹ️ Usuário na página inicial');
+                sessionStorage.clear();
             }
         });
 
