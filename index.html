@@ -447,6 +447,16 @@
             }
             updateCaptchaStatus('Resolva o captcha novamente para gerar outra key.');
         }
+
+        function ensureCaptchaSolved() {
+            if (captchaToken) {
+                return true;
+            }
+            alert('Resolva o captcha primeiro para liberar o processo.');
+            updateCaptchaStatus('⚠️ Complete o captcha antes de continuar.', '#ff6666');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return false;
+        }
         function onCaptchaSuccess(token) {
             captchaToken = token;
             updateCaptchaStatus('✅ Captcha validado. Assim que retornar dos links, aguardaremos esta validação.', '#00ffaa');
@@ -483,7 +493,7 @@
             });
 
             captchaReady = true;
-            updateCaptchaStatus('Resolva o captcha quando voltar dos links para finalizar sua key.');
+            updateCaptchaStatus('Resolva o captcha antes de abrir os links. Sem isso a key não é liberada.');
         };
 
         function generateToken() {
@@ -491,6 +501,9 @@
         }
 
         function startWorkinkProcess() {
+            if (!ensureCaptchaSolved()) {
+                return;
+            }
             const token = generateToken();
             sessionStorage.setItem('workink_token', token);
             sessionStorage.setItem('workink_timestamp', Date.now().toString());
@@ -506,6 +519,9 @@
         }
 
         function startLinkvertiseProcess() {
+            if (!ensureCaptchaSolved()) {
+                return;
+            }
             const token = generateToken();
             sessionStorage.setItem('workink_token', token);
             sessionStorage.setItem('workink_timestamp', Date.now().toString());
