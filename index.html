@@ -189,11 +189,15 @@
         }
 
         .hero-dynamic::after {
-            content: '▋';
+            content: '';
             position: absolute;
-            right: 0;
+            width: 3px;
+            height: 80%;
+            top: 10%;
+            right: -2px;
+            background: linear-gradient(180deg, var(--brand-alt), var(--brand));
+            border-radius: 999px;
             animation: blinkCaret 1s steps(1) infinite;
-            color: var(--brand-alt);
         }
 
         .hero p.lead {
@@ -264,40 +268,41 @@
         }
 
         .terminal-card {
-            background: rgba(4, 6, 18, 0.9);
-            padding: 24px;
-            border-radius: 24px;
-            border: 1px solid rgba(146, 184, 255, 0.25);
-            box-shadow: 0 30px 80px rgba(8, 12, 32, 0.65);
+            background: radial-gradient(circle at 20% 20%, rgba(15, 34, 70, 0.9), rgba(5, 8, 20, 0.92));
+            padding: 20px;
+            border-radius: 26px;
+            border: 1px solid rgba(146, 184, 255, 0.35);
+            box-shadow: 0 25px 70px rgba(4, 10, 30, 0.65);
             position: relative;
             overflow: hidden;
-            min-height: 220px;
-            transition: transform 0.35s ease, box-shadow 0.35s ease;
-        }
-
-        .terminal-card:hover {
-            transform: translateY(-10px) scale(1.01);
-            box-shadow: 0 40px 90px rgba(20, 32, 78, 0.75);
+            min-height: 240px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            will-change: transform;
+            transform-style: preserve-3d;
+            --tiltX: 0deg;
+            --tiltY: 0deg;
+            --glowX: 50%;
+            transform: perspective(1200px) rotateX(var(--tiltY)) rotateY(var(--tiltX));
         }
 
         .terminal-card::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 20% 20%, rgba(53, 124, 255, 0.35), transparent 55%);
-            opacity: 0.7;
+            background: radial-gradient(circle at var(--glowX) 25%, rgba(86, 144, 255, 0.35), transparent 60%);
             pointer-events: none;
         }
 
         .terminal-card pre {
             font-family: 'Space Grotesk', monospace;
-            font-size: 14px;
+            font-size: 13px;
             color: #8cff8c;
             white-space: pre-wrap;
             position: relative;
             z-index: 2;
             line-height: 1.5;
             min-height: 180px;
+            letter-spacing: 0.02em;
         }
 
         .experience-grid {
@@ -677,11 +682,11 @@
                     </div>
                     <div class="stat-card">
                         <strong>8h</strong>
-                        Linkvertise premium
+                        Free key Linkvertise
                     </div>
                     <div class="stat-card">
-                        <strong>0 ban</strong>
-                        Proteção KeyAuth + logs
+                        <strong>0 flags</strong>
+                        Blindagem anti-cheat Roblox
                     </div>
                 </div>
             </div>
@@ -722,7 +727,7 @@
                             <strong>Work.ink • 2 links rápidos</strong>
                             <div class="method-meta">
                                 <span>🕒 4 horas de acesso</span>
-                                <span>Tempo médio 2 min</span>
+                                <span>Tempo médio 5 min</span>
                             </div>
                             <button class="primary" onclick="startWorkinkProcess()">Começar Work.ink</button>
                         </article>
@@ -730,14 +735,14 @@
                             <strong>Linkvertise • 1 página completa</strong>
                             <div class="method-meta">
                                 <span>🕒 8 horas de acesso</span>
-                                <span>Tempo médio 3 min</span>
+                                <span>Tempo médio 1 h</span>
                             </div>
                             <button class="secondary" onclick="startLinkvertiseProcess()">Começar Linkvertise</button>
                         </article>
                     </div>
                     <ul class="step-list">
                         <li>Não feche esta aba; retornaremos automaticamente após cada link.</li>
-                        <li>Se demorar mais de 20 minutos, reinicie para garantir um token válido.</li>
+                        <li>Work.ink expira em 20 minutos; Linkvertise oferece até 1 hora para concluir.</li>
                         <li>O captcha precisa estar verde antes de abrir qualquer link.</li>
                     </ul>
                 </div>
@@ -883,18 +888,20 @@
         }
 
         const terminalSnippet = [
-            'const lab = new VacExternalLab({',
-            "    region: 'BR',",
-            "    modules: ['aim', 'visual', 'misc']",
-            '});',
+            '#include <iostream>',
+            '#include "VacExternalLab.hpp"',
             '',
-            'async function liberarKey() {',
-            '    await lab.secureSession();',
-            '    await lab.verifyHuman();',
-            "    return lab.freeKey(pick(['4h', '8h']));",
-            '}',
-            '',
-            'await liberarKey();'
+            'int main() {',
+            '    VacExternal::Lab lab;',
+            '    lab.SetRegion("BR");',
+            '    lab.EnableAntiCheat({"hCaptcha", "hashes"});',
+            '    auto key = lab.GenerateFreeKey({',
+            '        .duration = VacExternal::Pick({"4h", "8h"}),',
+            '        .secure = true',
+            '    });',
+            '    std::cout << "key => " << key << std::endl;',
+            '    return 0;',
+            '}'
         ].join('\n');
 
         const terminalElement = document.getElementById('terminalCode');
@@ -939,6 +946,16 @@
             setTimeout(handleTerminalTyping, 600);
         }
 
+        const METHOD_DEADLINES = {
+            workink: 20 * 60 * 1000,
+            linkvertise: 60 * 60 * 1000
+        };
+
+        const METHOD_LABELS = {
+            workink: '20 minutos',
+            linkvertise: '1 hora'
+        };
+
         const WORKER_URL = "https://vacexternal-keys.outlier872.workers.dev";
         const WORKINK_LINK_1 = "https://work.ink/28kn/vacexternal-4h-key";
         const WORKINK_LINK_2 = "https://work.ink/28kn/vacexternal-get-key";
@@ -960,6 +977,11 @@
         }
 
         toggleCaptchaOverlay(true);
+
+        function setProcessDeadline(method) {
+            const duration = METHOD_DEADLINES[method] || METHOD_DEADLINES.workink;
+            sessionStorage.setItem('token_deadline', (Date.now() + duration).toString());
+        }
 
         function updateCaptchaStatus(message, color = '#cfcfcf') {
             if (captchaStatusElement) {
@@ -1075,9 +1097,9 @@
             }
             const token = generateToken();
             sessionStorage.setItem('workink_token', token);
-            sessionStorage.setItem('workink_timestamp', Date.now().toString());
             sessionStorage.setItem('key_method', 'workink');
             sessionStorage.setItem('workink_step', '1');
+            setProcessDeadline('workink');
             console.log('🎫 Token gerado (Workink):', token.substring(0, 20) + '...');
             showStep(2);
             setTimeout(() => {
@@ -1091,8 +1113,8 @@
             }
             const token = generateToken();
             sessionStorage.setItem('workink_token', token);
-            sessionStorage.setItem('workink_timestamp', Date.now().toString());
             sessionStorage.setItem('key_method', 'linkvertise');
+            setProcessDeadline('linkvertise');
             console.log('🎫 Token gerado (Linkvertise):', token.substring(0, 20) + '...');
             showStep(4);
             setTimeout(() => {
@@ -1103,8 +1125,8 @@
         async function generateKey() {
             try {
                 const token = sessionStorage.getItem('workink_token');
-                const timestamp = sessionStorage.getItem('workink_timestamp');
                 const method = sessionStorage.getItem('key_method');
+                const deadlineRaw = sessionStorage.getItem('token_deadline');
                 const linkvertiseHash = sessionStorage.getItem('linkvertise_hash');
 
                 if (!token) {
@@ -1113,8 +1135,10 @@
                     return null;
                 }
 
-                if (timestamp && (Date.now() - parseInt(timestamp, 10)) > 1200000) {
-                    alert('⏰ O processo demorou muito tempo.\n\nComece novamente.');
+                const deadline = deadlineRaw ? parseInt(deadlineRaw, 10) : null;
+                if (deadline && Date.now() > deadline) {
+                    const label = METHOD_LABELS[method] || '20 minutos';
+                    alert('⏰ O processo ultrapassou o limite de ' + label + '.\n\nComece novamente.');
                     sessionStorage.clear();
                     showStep(1);
                     return null;
@@ -1283,6 +1307,32 @@
                 target.classList.add('active');
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
+        }
+
+        const terminalCard = document.querySelector('.terminal-card');
+        if (terminalCard) {
+            const tiltCard = (event) => {
+                const rect = terminalCard.getBoundingClientRect();
+                const percentX = (event.clientX - rect.left) / rect.width;
+                const percentY = (event.clientY - rect.top) / rect.height;
+                const tiltX = (percentX - 0.5) * 16; // rotateY
+                const tiltY = (0.5 - percentY) * 12; // rotateX
+                terminalCard.style.setProperty('--tiltX', tiltX.toFixed(2) + 'deg');
+                terminalCard.style.setProperty('--tiltY', tiltY.toFixed(2) + 'deg');
+                terminalCard.style.setProperty('--glowX', Math.round(percentX * 100) + '%');
+                terminalCard.style.boxShadow = '0 40px 110px rgba(8, 12, 32, 0.78)';
+            };
+
+            const resetTilt = () => {
+                terminalCard.style.setProperty('--tiltX', '0deg');
+                terminalCard.style.setProperty('--tiltY', '0deg');
+                terminalCard.style.setProperty('--glowX', '50%');
+                terminalCard.style.boxShadow = '0 25px 70px rgba(4, 10, 30, 0.65)';
+            };
+
+            terminalCard.addEventListener('pointermove', tiltCard);
+            terminalCard.addEventListener('pointerleave', resetTilt);
+            terminalCard.addEventListener('pointerup', resetTilt);
         }
     </script>
     <script src="https://js.hcaptcha.com/1/api.js?render=explicit&onload=onHCaptchaLoad" async defer></script>
