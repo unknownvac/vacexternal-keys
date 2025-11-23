@@ -77,7 +77,7 @@
 
         .nav-links {
             display: flex;
-            gap: 18px;
+            gap: 12px;
             font-size: 14px;
             color: var(--text-muted);
         }
@@ -85,11 +85,18 @@
         .nav-links a {
             text-decoration: none;
             color: inherit;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+            padding: 6px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.04);
+            font-weight: 500;
         }
 
         .nav-links a:hover {
             color: var(--text-primary);
+            border-color: rgba(109, 231, 255, 0.65);
+            background: rgba(109, 231, 255, 0.1);
         }
 
         .discord-pill {
@@ -171,8 +178,11 @@
         .swap-wrap {
             position: relative;
             min-height: 70px;
-            display: inline-block;
+            height: 72px;
+            display: inline-flex;
+            align-items: center;
             width: fit-content;
+            overflow: hidden;
         }
 
         .hero-dynamic {
@@ -184,6 +194,7 @@
             animation: pulseWord 3s ease-in-out infinite;
             position: relative;
             padding-right: 10px;
+            white-space: nowrap;
         }
 
         .hero-dynamic.swap-out {
@@ -277,9 +288,8 @@
             box-shadow: 0 25px 70px rgba(4, 10, 30, 0.65);
             position: relative;
             overflow: hidden;
-            min-height: 220px;
-            max-width: 420px;
-            margin-left: auto;
+            min-height: 200px;
+            height: 220px;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             will-change: transform;
             transform-style: preserve-3d;
@@ -305,8 +315,9 @@
             position: relative;
             z-index: 2;
             line-height: 1.5;
-            min-height: 180px;
+            height: 100%;
             letter-spacing: 0.02em;
+            overflow: hidden;
         }
 
         .experience-grid {
@@ -640,6 +651,14 @@
                 gap: 16px;
             }
 
+            .swap-wrap {
+                height: auto;
+            }
+
+            .hero-dynamic {
+                white-space: normal;
+            }
+
             .cta-row {
                 flex-direction: column;
             }
@@ -655,7 +674,7 @@
         <div class="brand">VacExternal</div>
         <div class="nav-links">
             <a href="#metodos">Métodos</a>
-            <a href="https://vacexternal.netlify.app/" target="_blank" rel="noopener">Benefícios</a>
+            <a href="https://vacexternal.netlify.app/" target="_blank" rel="noopener">Site Oficial</a>
             <a href="https://discord.gg/vacexternal" target="_blank" rel="noopener">Suporte</a>
         </div>
         <a class="discord-pill" href="https://discord.gg/vacexternal" target="_blank" rel="noopener">Discord Oficial →</a>
