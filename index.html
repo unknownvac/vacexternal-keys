@@ -10,15 +10,15 @@
     <style>
         :root {
             color-scheme: dark;
-            --bg-base: #040405;
-            --bg-card: rgba(10, 10, 14, 0.85);
+            --bg-base: #03040a;
+            --bg-card: rgba(6, 10, 22, 0.9);
             --bg-card-strong: rgba(255, 255, 255, 0.05);
-            --text-primary: #f4f4f4;
-            --text-muted: #9aa0b1;
-            --brand: #ff3838;
-            --brand-alt: #ff8c00;
-            --brand-blue: #4aa5ff;
-            --border: rgba(255, 255, 255, 0.06);
+            --text-primary: #f4faff;
+            --text-muted: #99a8c4;
+            --brand: #357cff;
+            --brand-alt: #6de7ff;
+            --brand-blue: #92b8ff;
+            --border: rgba(101, 130, 209, 0.2);
             --blur: blur(20px);
         }
 
@@ -30,8 +30,8 @@
 
         body {
             font-family: 'Space Grotesk', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: radial-gradient(circle at 20% 20%, rgba(255, 56, 56, 0.12), transparent 35%),
-                        radial-gradient(circle at 80% 0%, rgba(74, 165, 255, 0.18), transparent 35%),
+            background: radial-gradient(circle at 20% 20%, rgba(53, 124, 255, 0.18), transparent 35%),
+                        radial-gradient(circle at 80% 0%, rgba(109, 231, 255, 0.22), transparent 30%),
                         var(--bg-base);
             color: var(--text-primary);
             min-height: 100vh;
@@ -129,13 +129,28 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 6px 14px;
+            padding: 8px 18px;
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: linear-gradient(120deg, rgba(53, 124, 255, 0.18), rgba(109, 231, 255, 0.25));
+            border: 1px solid rgba(146, 184, 255, 0.6);
+            box-shadow: 0 10px 35px rgba(53, 124, 255, 0.25);
             font-size: 13px;
-            color: var(--text-muted);
+            color: var(--text-primary);
             margin-bottom: 24px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            animation: tagGlow 4s ease-in-out infinite;
+        }
+
+        .hero-content .tag .tag-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--brand-alt);
+            box-shadow: 0 0 15px var(--brand-alt);
+            animation: pulseDot 2.8s ease-in-out infinite;
         }
 
         .hero h1 {
@@ -149,7 +164,7 @@
             display: block;
         }
 
-        .pipe {
+        .hero-highlight {
             color: var(--brand);
         }
 
@@ -199,14 +214,15 @@
         }
 
         .btn-primary {
-            background: linear-gradient(120deg, #ff3838, #ff8c00);
-            color: #040405;
-            box-shadow: 0 20px 35px rgba(255, 56, 56, 0.25);
+            background: linear-gradient(120deg, #357cff, #6de7ff);
+            color: #03040a;
+            box-shadow: 0 20px 40px rgba(53, 124, 255, 0.35);
         }
 
         .btn-ghost {
             background: rgba(255, 255, 255, 0.02);
             color: var(--text-primary);
+            border-color: rgba(146, 184, 255, 0.3);
         }
 
         .btn-primary:hover,
@@ -238,11 +254,11 @@
         }
 
         .terminal-card {
-            background: rgba(4, 4, 8, 0.85);
+            background: rgba(4, 6, 18, 0.9);
             padding: 24px;
             border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(146, 184, 255, 0.25);
+            box-shadow: 0 30px 80px rgba(8, 12, 32, 0.65);
             position: relative;
             overflow: hidden;
             min-height: 220px;
@@ -252,7 +268,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 20% 20%, rgba(255, 56, 56, 0.35), transparent 55%);
+            background: radial-gradient(circle at 20% 20%, rgba(53, 124, 255, 0.35), transparent 55%);
             opacity: 0.7;
             pointer-events: none;
         }
@@ -264,6 +280,8 @@
             white-space: pre-line;
             position: relative;
             z-index: 2;
+            line-height: 1.5;
+            animation: floatCode 6s ease-in-out infinite;
         }
 
         .experience-grid {
@@ -398,12 +416,12 @@
         }
 
         .method-card button.primary {
-            background: linear-gradient(120deg, #ff3838, #ff8c00);
+            background: linear-gradient(120deg, #357cff, #6de7ff);
         }
 
         .method-card button.secondary {
-            background: linear-gradient(120deg, #4aa5ff, #3f68ff);
-            color: #040405;
+            background: linear-gradient(120deg, #1f3dff, #7f9bff);
+            color: #03040a;
         }
 
         ul.step-list {
@@ -458,7 +476,7 @@
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #ff8c00, #ff3838);
+            background: linear-gradient(90deg, #357cff, #6de7ff);
             transition: width 0.3s ease;
         }
 
@@ -563,12 +581,29 @@
         }
 
         @keyframes pulseWord {
-            0%, 100% { text-shadow: 0 0 18px rgba(255, 140, 0, 0.4); }
-            50% { text-shadow: 0 0 30px rgba(255, 140, 0, 0.85); }
+            0%, 100% { text-shadow: 0 0 18px rgba(109, 231, 255, 0.35); }
+            50% { text-shadow: 0 0 30px rgba(53, 124, 255, 0.8); }
         }
 
         @keyframes fadeOut {
             to { opacity: 0; transform: translateY(-8px); }
+        }
+
+        @keyframes tagGlow {
+            0% { box-shadow: 0 10px 35px rgba(53, 124, 255, 0.2); }
+            50% { box-shadow: 0 18px 45px rgba(109, 231, 255, 0.45); }
+            100% { box-shadow: 0 10px 35px rgba(53, 124, 255, 0.2); }
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { transform: scale(1); opacity: 0.85; }
+            50% { transform: scale(1.6); opacity: 0.4; }
+        }
+
+        @keyframes floatCode {
+            0% { transform: translateY(0); filter: drop-shadow(0 0 6px rgba(53, 124, 255, 0.35)); }
+            50% { transform: translateY(-6px); filter: drop-shadow(0 10px 16px rgba(109, 231, 255, 0.25)); }
+            100% { transform: translateY(0); filter: drop-shadow(0 0 6px rgba(53, 124, 255, 0.35)); }
         }
 
         @media (max-width: 768px) {
@@ -605,14 +640,11 @@
     <main class="page">
         <section class="hero" id="home">
             <div class="hero-content">
-                <span class="tag">Chaves gratuitas • 4h ou 8h • KeyAuth protegido</span>
+                <span class="tag"><span class="tag-dot"></span>Chaves gratuitas • 4h ou 8h • Dados protegidos</span>
                 <h1>
-                    <span>A maior</span>
-                    <span class="pipe">revendedora</span>
-                    <span>de</span>
-                    <span class="swap-wrap"><span id="heroDynamicWord" class="hero-dynamic">scripts</span></span>
-                    <span class="pipe">|</span>
-                    <span>do Brasil!</span>
+                    <span class="hero-highlight">O melhor external</span>
+                    <span class="swap-wrap"><span id="heroDynamicWord" class="hero-dynamic">desenvolvido por brasileiros</span></span>
+                    <span>com experiência premium garantida.</span>
                 </h1>
                 <p class="lead">
                     Segurança com Cloudflare + hCaptcha, verificação humana obrigatória e geração automática
@@ -639,14 +671,22 @@
                 </div>
             </div>
             <div class="terminal-card">
-                <pre>$ vacexternal.exe
->Iniciando laboratório de keys...
->Conectando ao worker seguro...
->Pronto! Key gratuita liberada
- após validação humana.
+                <pre>const lab = new VacExternalLab({
+    region: 'BR',
+    antiBot: ['hCaptcha', 'hashes', 'telemetria']
+});
 
-# Fluxo anti-bot exclusivo
-# hCaptcha + hashes Work.ink/Linkvertise</pre>
+async function liberarKey() {
+    await lab.connectSecureWorker();
+    await lab.verifyHuman();
+    const key = await lab.generateFreeKey({
+        duration: pickMethod(['4h', '8h'])
+    });
+    console.log('key-ready =>', key);
+    return key;
+}
+
+liberarKey().then(key => ui.render(key));</pre>
             </div>
         </section>
 
@@ -665,7 +705,7 @@
             </article>
             <article class="experience-card">
                 <h4>Extrema qualidade</h4>
-                <p>Layout moderno, animações suaves e fluxo guiado que lembra os sites premium enviados.</p>
+                <p>Melhores funções, diferentes jogos suportados.</p>
             </article>
         </section>
 
@@ -791,7 +831,11 @@
     </div>
 
     <script>
-        const heroWords = ['scripts', 'executores'];
+        const heroWords = [
+            'desenvolvido por brasileiros',
+            'com suporte e updates diários',
+            'para quem exige segurança total'
+        ];
         const heroWordElement = document.getElementById('heroDynamicWord');
         let heroWordIndex = 0;
         setInterval(() => {
