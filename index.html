@@ -405,6 +405,7 @@
         let captchaToken = null;
         let captchaResolvers = [];
         let captchaReady = false;
+        let captchaReadyResolvers = [];
 
         function updateCaptchaStatus(message, color = '#cfcfcf') {
             if (captchaStatusElement) {
@@ -418,10 +419,18 @@
             captchaResolvers = [];
         }
 
-        function demandCaptchaToken(forceRefresh = false) {
+        function waitForCaptchaReady() {
+            if (captchaReady && window.hcaptcha) {
+                return Promise.resolve();
+            }
+            return new Promise(resolve => {
+                captchaReadyResolvers.push(resolve);
+            });
+        }
+
+        async function demandCaptchaToken(forceRefresh = false) {
             if (!captchaReady || !window.hcaptcha) {
-                alert('Captcha indisponível. Configure o site key do hCaptcha e recarregue a página.');
-                throw new Error('Captcha indisponível');
+                await waitForCaptchaReady();
             }
 
             if (forceRefresh && window.hcaptcha && captchaWidgetId !== null) {
@@ -430,7 +439,7 @@
             }
 
             if (captchaToken) {
-                return Promise.resolve(captchaToken);
+                return captchaToken;
             }
 
             return new Promise(resolve => {
@@ -493,6 +502,8 @@
             });
 
             captchaReady = true;
+            captchaReadyResolvers.forEach(resolve => resolve());
+            captchaReadyResolvers = [];
             updateCaptchaStatus('Resolva o captcha antes de abrir os links. Sem isso a key não é liberada.');
         };
 
@@ -628,6 +639,7 @@
                 
                 console.log('✅ Workink completo! Gerando key de 4 horas...');
                 showStep(5);
+                updateCaptchaStatus('Resolva o captcha novamente para liberar sua key.', '#ff8c00');
                 
                 const key = await generateKey();
                 
@@ -652,6 +664,7 @@
                 console.log('✅ Linkvertise completo! Hash recebido, gerando key de 8 horas...');
                 sessionStorage.setItem('linkvertise_hash', linkvertiseHash);
                 showStep(5);
+                updateCaptchaStatus('Resolva o captcha novamente para liberar sua key.', '#ff8c00');
                 
                 const key = await generateKey();
                 
