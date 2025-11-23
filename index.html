@@ -401,26 +401,11 @@
         const WORKINK_LINK_2 = "https://work.ink/28kn/vacexternal-get-key";
         const LINKVERTISE_LINK = "https://link-center.net/1209215/Z30kIRzDxVHY";
         const captchaStatusElement = document.getElementById('captchaStatus');
-        const CAPTCHA_TOKEN_KEY = 'hcaptcha_token';
-        const CAPTCHA_TIME_KEY = 'hcaptcha_token_time';
-        const CAPTCHA_MAX_AGE_MS = 2 * 60 * 60 * 1000; // 2 horas cobre Work.ink e Linkvertise longos
         let captchaWidgetId = null;
         let captchaToken = null;
         let captchaResolvers = [];
         let captchaReady = false;
         let captchaReadyResolvers = [];
-
-        (function restoreCaptchaToken() {
-            const storedToken = sessionStorage.getItem(CAPTCHA_TOKEN_KEY);
-            const storedTime = parseInt(sessionStorage.getItem(CAPTCHA_TIME_KEY) || '0', 10);
-            if (storedToken && Date.now() - storedTime < CAPTCHA_MAX_AGE_MS) {
-                captchaToken = storedToken;
-                updateCaptchaStatus('✅ Captcha validado. Prossiga com os passos.', '#00ffaa');
-            } else {
-                sessionStorage.removeItem(CAPTCHA_TOKEN_KEY);
-                sessionStorage.removeItem(CAPTCHA_TIME_KEY);
-            }
-        })();
 
         function updateCaptchaStatus(message, color = '#cfcfcf') {
             if (captchaStatusElement) {
@@ -451,8 +436,6 @@
             if (forceRefresh && window.hcaptcha && captchaWidgetId !== null) {
                 window.hcaptcha.reset(captchaWidgetId);
                 captchaToken = null;
-                sessionStorage.removeItem(CAPTCHA_TOKEN_KEY);
-                sessionStorage.removeItem(CAPTCHA_TIME_KEY);
             }
 
             if (captchaToken) {
@@ -471,8 +454,6 @@
             if (window.hcaptcha && captchaWidgetId !== null) {
                 window.hcaptcha.reset(captchaWidgetId);
             }
-            sessionStorage.removeItem(CAPTCHA_TOKEN_KEY);
-            sessionStorage.removeItem(CAPTCHA_TIME_KEY);
             updateCaptchaStatus('Resolva o captcha novamente para gerar outra key.');
         }
 
@@ -487,8 +468,6 @@
         }
         function onCaptchaSuccess(token) {
             captchaToken = token;
-            sessionStorage.setItem(CAPTCHA_TOKEN_KEY, token);
-            sessionStorage.setItem(CAPTCHA_TIME_KEY, Date.now().toString());
             updateCaptchaStatus('✅ Captcha validado. Assim que retornar dos links, aguardaremos esta validação.', '#00ffaa');
             flushCaptchaResolvers(token);
         }
@@ -525,9 +504,7 @@
             captchaReady = true;
             captchaReadyResolvers.forEach(resolve => resolve());
             captchaReadyResolvers = [];
-            if (!captchaToken) {
-                updateCaptchaStatus('Resolva o captcha antes de abrir os links. Sem isso a key não é liberada.');
-            }
+            updateCaptchaStatus('Resolva o captcha antes de abrir os links. Sem isso a key não é liberada.');
         };
 
         function generateToken() {
