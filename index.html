@@ -555,7 +555,7 @@
                     return null;
                 }
 
-                const captchaProof = await demandCaptchaToken(true);
+                const captchaProof = await demandCaptchaToken(false);
                 const requestBody = {
                     token: token,
                     method: method,
