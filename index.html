@@ -180,10 +180,20 @@
             display: inline-flex;
             align-items: center;
             animation: pulseWord 3s ease-in-out infinite;
+            position: relative;
+            padding-right: 10px;
         }
 
         .hero-dynamic.swap-out {
             animation: fadeOut 0.4s forwards;
+        }
+
+        .hero-dynamic::after {
+            content: '▋';
+            position: absolute;
+            right: 0;
+            animation: blinkCaret 1s steps(1) infinite;
+            color: var(--brand-alt);
         }
 
         .hero p.lead {
@@ -262,6 +272,12 @@
             position: relative;
             overflow: hidden;
             min-height: 220px;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .terminal-card:hover {
+            transform: translateY(-10px) scale(1.01);
+            box-shadow: 0 40px 90px rgba(20, 32, 78, 0.75);
         }
 
         .terminal-card::after {
@@ -277,11 +293,11 @@
             font-family: 'Space Grotesk', monospace;
             font-size: 14px;
             color: #8cff8c;
-            white-space: pre-line;
+            white-space: pre-wrap;
             position: relative;
             z-index: 2;
             line-height: 1.5;
-            animation: floatCode 6s ease-in-out infinite;
+            min-height: 180px;
         }
 
         .experience-grid {
@@ -600,10 +616,9 @@
             50% { transform: scale(1.6); opacity: 0.4; }
         }
 
-        @keyframes floatCode {
-            0% { transform: translateY(0); filter: drop-shadow(0 0 6px rgba(53, 124, 255, 0.35)); }
-            50% { transform: translateY(-6px); filter: drop-shadow(0 10px 16px rgba(109, 231, 255, 0.25)); }
-            100% { transform: translateY(0); filter: drop-shadow(0 0 6px rgba(53, 124, 255, 0.35)); }
+        @keyframes blinkCaret {
+            0%, 60% { opacity: 1; }
+            60.1%, 100% { opacity: 0; }
         }
 
         @media (max-width: 768px) {
@@ -671,22 +686,7 @@
                 </div>
             </div>
             <div class="terminal-card">
-                <pre>const lab = new VacExternalLab({
-    region: 'BR',
-    antiBot: ['hCaptcha', 'hashes', 'telemetria']
-});
-
-async function liberarKey() {
-    await lab.connectSecureWorker();
-    await lab.verifyHuman();
-    const key = await lab.generateFreeKey({
-        duration: pickMethod(['4h', '8h'])
-    });
-    console.log('key-ready =>', key);
-    return key;
-}
-
-liberarKey().then(key => ui.render(key));</pre>
+                <pre id="terminalCode"></pre>
             </div>
         </section>
 
@@ -838,17 +838,106 @@ liberarKey().then(key => ui.render(key));</pre>
         ];
         const heroWordElement = document.getElementById('heroDynamicWord');
         let heroWordIndex = 0;
-        setInterval(() => {
+        let heroCharIndex = 0;
+        let heroTypingForward = true;
+        const HERO_TYPE_SPEED = 70;
+        const HERO_DELETE_SPEED = 35;
+        const HERO_HOLD_DELAY = 1400;
+
+        function handleHeroTyping() {
             if (!heroWordElement) {
                 return;
             }
-            heroWordElement.classList.add('swap-out');
-            setTimeout(() => {
-                heroWordIndex = (heroWordIndex + 1) % heroWords.length;
-                heroWordElement.textContent = heroWords[heroWordIndex];
-                heroWordElement.classList.remove('swap-out');
-            }, 350);
-        }, 3200);
+
+            const currentWord = heroWords[heroWordIndex];
+
+            if (heroTypingForward) {
+                heroCharIndex++;
+                heroWordElement.textContent = currentWord.slice(0, heroCharIndex);
+
+                if (heroCharIndex === currentWord.length) {
+                    heroTypingForward = false;
+                    setTimeout(handleHeroTyping, HERO_HOLD_DELAY);
+                    return;
+                }
+
+                setTimeout(handleHeroTyping, HERO_TYPE_SPEED);
+            } else {
+                heroCharIndex--;
+                heroWordElement.textContent = currentWord.slice(0, Math.max(heroCharIndex, 0));
+
+                if (heroCharIndex <= 0) {
+                    heroTypingForward = true;
+                    heroWordIndex = (heroWordIndex + 1) % heroWords.length;
+                    setTimeout(handleHeroTyping, HERO_TYPE_SPEED);
+                    return;
+                }
+
+                setTimeout(handleHeroTyping, HERO_DELETE_SPEED);
+            }
+        }
+
+        if (heroWordElement) {
+            heroWordElement.textContent = '';
+            setTimeout(handleHeroTyping, 400);
+        }
+
+        const terminalSnippet = [
+            'const lab = new VacExternalLab({',
+            "    region: 'BR',",
+            "    modules: ['aim', 'visual', 'misc']",
+            '});',
+            '',
+            'async function liberarKey() {',
+            '    await lab.secureSession();',
+            '    await lab.verifyHuman();',
+            "    return lab.freeKey(pick(['4h', '8h']));",
+            '}',
+            '',
+            'await liberarKey();'
+        ].join('\n');
+
+        const terminalElement = document.getElementById('terminalCode');
+        let terminalCharIndex = 0;
+        let terminalTypingForward = true;
+        const TERMINAL_TYPE_SPEED = 38;
+        const TERMINAL_DELETE_SPEED = 22;
+        const TERMINAL_HOLD_DELAY = 1600;
+
+        function handleTerminalTyping() {
+            if (!terminalElement) {
+                return;
+            }
+
+            if (terminalTypingForward) {
+                terminalCharIndex++;
+                terminalElement.textContent = terminalSnippet.slice(0, terminalCharIndex);
+
+                if (terminalCharIndex === terminalSnippet.length) {
+                    terminalTypingForward = false;
+                    setTimeout(handleTerminalTyping, TERMINAL_HOLD_DELAY);
+                    return;
+                }
+
+                const delayBoost = terminalSnippet.charAt(terminalCharIndex - 1) === '\n' ? 120 : 0;
+                setTimeout(handleTerminalTyping, TERMINAL_TYPE_SPEED + delayBoost);
+            } else {
+                terminalCharIndex--;
+                terminalElement.textContent = terminalSnippet.slice(0, Math.max(terminalCharIndex, 0));
+
+                if (terminalCharIndex <= 0) {
+                    terminalTypingForward = true;
+                    setTimeout(handleTerminalTyping, 500);
+                    return;
+                }
+
+                setTimeout(handleTerminalTyping, TERMINAL_DELETE_SPEED);
+            }
+        }
+
+        if (terminalElement) {
+            setTimeout(handleTerminalTyping, 600);
+        }
 
         const WORKER_URL = "https://vacexternal-keys.outlier872.workers.dev";
         const WORKINK_LINK_1 = "https://work.ink/28kn/vacexternal-4h-key";
