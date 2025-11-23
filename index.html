@@ -130,6 +130,7 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
             margin-bottom: 50px;
+            align-items: flex-start;
         }
 
         .hero-content span.tag {
@@ -282,14 +283,16 @@
 
         .terminal-card {
             background: radial-gradient(circle at 20% 20%, rgba(15, 34, 70, 0.9), rgba(5, 8, 20, 0.92));
-            padding: 20px;
+            padding: 28px;
             border-radius: 26px;
             border: 1px solid rgba(146, 184, 255, 0.35);
             box-shadow: 0 25px 70px rgba(4, 10, 30, 0.65);
             position: relative;
             overflow: hidden;
-            min-height: 200px;
-            height: 220px;
+            min-height: 330px;
+            height: auto;
+            align-self: flex-end;
+            margin-top: 50px;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             will-change: transform;
             transform-style: preserve-3d;
@@ -315,7 +318,6 @@
             position: relative;
             z-index: 2;
             line-height: 1.5;
-            height: 100%;
             letter-spacing: 0.02em;
             overflow: hidden;
         }
@@ -659,6 +661,11 @@
                 white-space: normal;
             }
 
+            .terminal-card {
+                margin-top: 20px;
+                min-height: 260px;
+            }
+
             .cta-row {
                 flex-direction: column;
             }
@@ -928,11 +935,19 @@
         ].join('\n');
 
         const terminalElement = document.getElementById('terminalCode');
+        const terminalCard = document.querySelector('.terminal-card');
         let terminalCharIndex = 0;
         let terminalTypingForward = true;
         const TERMINAL_TYPE_SPEED = 38;
         const TERMINAL_DELETE_SPEED = 22;
         const TERMINAL_HOLD_DELAY = 1600;
+
+        if (terminalCard) {
+            const terminalLines = terminalSnippet.split('\n').length;
+            const lineHeightPx = 22;
+            const paddingAllowance = 80;
+            terminalCard.style.minHeight = (terminalLines * lineHeightPx + paddingAllowance) + 'px';
+        }
 
         function handleTerminalTyping() {
             if (!terminalElement) {
@@ -1332,14 +1347,13 @@
             }
         }
 
-        const terminalCard = document.querySelector('.terminal-card');
         if (terminalCard) {
             const tiltCard = (event) => {
                 const rect = terminalCard.getBoundingClientRect();
                 const percentX = (event.clientX - rect.left) / rect.width;
                 const percentY = (event.clientY - rect.top) / rect.height;
-                const tiltX = (percentX - 0.5) * 16; // rotateY
-                const tiltY = (0.5 - percentY) * 12; // rotateX
+                const tiltX = (percentX - 0.5) * 16;
+                const tiltY = (0.5 - percentY) * 12; 
                 terminalCard.style.setProperty('--tiltX', tiltX.toFixed(2) + 'deg');
                 terminalCard.style.setProperty('--tiltY', tiltY.toFixed(2) + 'deg');
                 terminalCard.style.setProperty('--glowX', Math.round(percentX * 100) + '%');
