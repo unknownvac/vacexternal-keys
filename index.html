@@ -62,7 +62,8 @@
             z-index: 1;
         }
 
-        .brand { font-weight: 600; font-size: 18px; letter-spacing: 0.08em; text-transform: uppercase; }
+        .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 18px; letter-spacing: 0.08em; text-transform: uppercase; }
+        .brand img { width: 32px; height: 32px; object-fit: contain; }
 
         .nav-links { display: flex; gap: 12px; font-size: 14px; color: var(--text-muted); }
 
@@ -359,7 +360,7 @@
 </head>
 <body>
     <header class="nav">
-        <div class="brand">VacExternal</div>
+        <div class="brand"><img src="vac.png" alt="" width="32" height="32">VacExternal</div>
         <div class="nav-links">
             <a href="#metodos">Como Funciona</a>
             <a href="https://vacexternal.netlify.app/" target="_blank" rel="noopener">Site Oficial</a>
@@ -658,7 +659,7 @@
 
         function onCaptchaSuccess(token) {
             captchaToken = token;
-            updateCaptchaStatus('\u2705 Captcha validado. Complete os links para receber sua key.', '#00ffaa');
+            updateCaptchaStatus('\u2705 Captcha validado. Gerando sua key...', '#00ffaa');
             flushCaptchaResolvers(token);
             toggleCaptchaOverlay(false);
         }
@@ -693,7 +694,7 @@
             captchaReady = true;
             captchaReadyResolvers.forEach(function(resolve) { resolve(); });
             captchaReadyResolvers = [];
-            updateCaptchaStatus('Resolva o captcha antes de abrir os links. Sem isso a key n\u00E3o \u00E9 liberada.');
+            updateCaptchaStatus('Conclua os links e resolva o captcha para receber sua key.');
         };
 
         // ─── Work.ink flow ───
@@ -723,6 +724,9 @@
         async function generateKey(step1Token, step2Token) {
             var errorEl = document.getElementById('step4Error');
             var statusEl = document.getElementById('step4Status');
+            var retryButton = document.getElementById('retryButton');
+            if (retryButton) retryButton.style.display = 'none';
+            if (errorEl) errorEl.classList.remove('visible');
             try {
                 if (statusEl) statusEl.textContent = 'Resolva o captcha abaixo para liberar a key...';
                 updateCaptchaStatus('Resolva o captcha novamente para gerar sua key.', '#ff8c00');
