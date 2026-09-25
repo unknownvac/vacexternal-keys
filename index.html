@@ -22,11 +22,7 @@
             --blur: blur(20px);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Space Grotesk', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -49,9 +45,7 @@
             opacity: 0.08;
         }
 
-        body.overlay-active {
-            overflow: hidden;
-        }
+        body.overlay-active { overflow: hidden; }
 
         .nav {
             max-width: 1200px;
@@ -68,29 +62,16 @@
             z-index: 1;
         }
 
-        .brand {
-            font-weight: 600;
-            font-size: 18px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
+        .brand { font-weight: 600; font-size: 18px; letter-spacing: 0.08em; text-transform: uppercase; }
 
-        .nav-links {
-            display: flex;
-            gap: 12px;
-            font-size: 14px;
-            color: var(--text-muted);
-        }
+        .nav-links { display: flex; gap: 12px; font-size: 14px; color: var(--text-muted); }
 
         .nav-links a {
-            text-decoration: none;
-            color: inherit;
+            text-decoration: none; color: inherit;
             transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
-            padding: 6px 16px;
-            border-radius: 999px;
+            padding: 6px 16px; border-radius: 999px;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.04);
-            font-weight: 500;
+            background: rgba(255, 255, 255, 0.04); font-weight: 500;
         }
 
         .nav-links a:hover {
@@ -100,16 +81,11 @@
         }
 
         .discord-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 18px;
-            border-radius: 999px;
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 10px 18px; border-radius: 999px;
             background: rgba(45, 45, 65, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            color: var(--text-primary);
-            text-decoration: none;
-            font-size: 14px;
+            color: var(--text-primary); text-decoration: none; font-size: 14px;
             transition: all 0.3s ease;
         }
 
@@ -118,544 +94,266 @@
             box-shadow: 0 0 25px rgba(74, 165, 255, 0.3);
         }
 
-        .page {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
+        .page { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
 
         .hero {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-            align-items: flex-start;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px; margin-bottom: 50px; align-items: flex-start;
         }
 
         .hero-content span.tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 18px;
-            border-radius: 999px;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 18px; border-radius: 999px;
             background: linear-gradient(120deg, rgba(53, 124, 255, 0.18), rgba(109, 231, 255, 0.25));
             border: 1px solid rgba(146, 184, 255, 0.6);
             box-shadow: 0 10px 35px rgba(53, 124, 255, 0.25);
-            font-size: 13px;
-            color: var(--text-primary);
-            margin-bottom: 24px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            position: relative;
-            overflow: hidden;
+            font-size: 13px; color: var(--text-primary);
+            margin-bottom: 24px; letter-spacing: 0.08em; text-transform: uppercase;
+            position: relative; overflow: hidden;
             animation: tagGlow 4s ease-in-out infinite;
         }
 
         .hero-content .tag .tag-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
+            width: 8px; height: 8px; border-radius: 50%;
             background: var(--brand-alt);
             box-shadow: 0 0 15px var(--brand-alt);
             animation: pulseDot 2.8s ease-in-out infinite;
         }
 
-        .hero h1 {
-            font-size: clamp(40px, 7vw, 64px);
-            line-height: 1.05;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .hero h1 span {
-            display: block;
-        }
-
-        .hero-highlight {
-            color: var(--brand);
-        }
+        .hero h1 { font-size: clamp(32px, 5vw, 48px); line-height: 1.12; margin-bottom: 20px; font-weight: 600; }
+        .hero h1 span { display: block; }
+        .hero-highlight { color: var(--brand); }
 
         .swap-wrap {
-            position: relative;
-            min-height: 70px;
-            height: 72px;
-            display: inline-flex;
-            align-items: center;
-            width: fit-content;
-            overflow: hidden;
+            position: relative; min-height: 70px; height: 72px;
+            display: inline-flex; align-items: center; width: fit-content; overflow: hidden;
         }
 
         .hero-dynamic {
-            color: var(--brand-alt);
-            font-weight: 700;
-            font-size: clamp(42px, 6vw, 56px);
-            display: inline-flex;
-            align-items: center;
+            color: var(--brand-alt); font-weight: 700; font-size: clamp(42px, 6vw, 56px);
+            display: inline-flex; align-items: center;
             animation: pulseWord 3s ease-in-out infinite;
-            position: relative;
-            padding-right: 10px;
-            white-space: nowrap;
-        }
-
-        .hero-dynamic.swap-out {
-            animation: fadeOut 0.4s forwards;
+            position: relative; padding-right: 10px; white-space: nowrap;
         }
 
         .hero-dynamic::after {
-            content: '';
-            position: absolute;
-            width: 3px;
-            height: 80%;
-            top: 10%;
-            right: -2px;
+            content: ''; position: absolute; width: 3px; height: 80%;
+            top: 10%; right: -2px;
             background: linear-gradient(180deg, var(--brand-alt), var(--brand));
-            border-radius: 999px;
-            animation: blinkCaret 1s steps(1) infinite;
+            border-radius: 999px; animation: blinkCaret 1s steps(1) infinite;
         }
 
         .hero p.lead {
-            color: var(--text-muted);
-            max-width: 520px;
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 32px;
+            color: var(--text-muted); max-width: 520px;
+            font-size: 18px; line-height: 1.6; margin-bottom: 32px;
         }
 
-        .cta-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
+        .cta-row { display: flex; flex-wrap: wrap; gap: 16px; }
 
         .btn-primary {
-            flex: 1;
-            min-width: 200px;
-            max-width: 320px;
-            padding: 18px 24px;
-            border-radius: 16px;
+            flex: 1; min-width: 200px; max-width: 320px;
+            padding: 18px 24px; border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.12);
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
+            cursor: pointer; font-size: 16px; font-weight: 600;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
             background: linear-gradient(120deg, #357cff, #6de7ff);
             color: #03040a;
             box-shadow: 0 20px 40px rgba(53, 124, 255, 0.35);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-4px) scale(1.01);
-        }
+        .btn-primary:hover { transform: translateY(-4px) scale(1.01); }
 
         .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 18px;
-            margin-top: 30px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 18px; margin-top: 30px;
         }
 
         .stat-card {
-            padding: 18px;
-            border-radius: 16px;
+            padding: 18px; border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.02);
-            font-size: 15px;
-            line-height: 1.4;
+            background: rgba(255, 255, 255, 0.02); font-size: 15px; line-height: 1.4;
         }
 
         .stat-card strong {
-            display: block;
-            font-size: 26px;
-            margin-bottom: 6px;
-            color: var(--brand-alt);
+            display: block; font-size: 26px; margin-bottom: 6px; color: var(--brand-alt);
         }
 
         .terminal-card {
             background: radial-gradient(circle at 20% 20%, rgba(15, 34, 70, 0.9), rgba(5, 8, 20, 0.92));
-            padding: 28px;
-            border-radius: 26px;
+            padding: 28px; border-radius: 26px;
             border: 1px solid rgba(146, 184, 255, 0.35);
             box-shadow: 0 25px 70px rgba(4, 10, 30, 0.65);
-            position: relative;
-            overflow: hidden;
-            min-height: 330px;
-            height: auto;
-            align-self: flex-end;
-            margin-top: 50px;
+            position: relative; overflow: hidden;
+            min-height: 330px; height: auto; align-self: flex-end; margin-top: 50px;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            will-change: transform;
-            transform-style: preserve-3d;
-            --tiltX: 0deg;
-            --tiltY: 0deg;
-            --glowX: 50%;
+            will-change: transform; transform-style: preserve-3d;
+            --tiltX: 0deg; --tiltY: 0deg; --glowX: 50%;
             transform: perspective(1200px) rotateX(var(--tiltY)) rotateY(var(--tiltX));
         }
 
         .terminal-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
+            content: ''; position: absolute; inset: 0;
             background: radial-gradient(circle at var(--glowX) 25%, rgba(86, 144, 255, 0.35), transparent 60%);
             pointer-events: none;
         }
 
         .terminal-card pre {
-            font-family: 'Space Grotesk', monospace;
-            font-size: 13px;
-            color: #8cff8c;
-            white-space: pre-wrap;
-            position: relative;
-            z-index: 2;
-            line-height: 1.5;
-            letter-spacing: 0.02em;
-            overflow: hidden;
+            font-family: 'Space Grotesk', monospace; font-size: 13px;
+            color: #8cff8c; white-space: pre-wrap; position: relative;
+            z-index: 2; line-height: 1.5; letter-spacing: 0.02em; overflow: hidden;
         }
 
         .experience-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin: 40px 0 60px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px; margin: 40px 0 60px;
         }
 
         .experience-card {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 22px;
-            min-height: 185px;
+            border-radius: 20px; padding: 22px; min-height: 185px;
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .experience-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(255, 255, 255, 0.25);
-        }
+        .experience-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255, 0.25); }
+        .experience-card h4 { margin-bottom: 10px; font-size: 18px; color: var(--text-primary); }
+        .experience-card p { color: var(--text-muted); font-size: 15px; line-height: 1.5; }
 
-        .experience-card h4 {
-            margin-bottom: 10px;
-            font-size: 18px;
-            color: var(--text-primary);
-        }
-
-        .experience-card p {
-            color: var(--text-muted);
-            font-size: 15px;
-            line-height: 1.5;
-        }
-
-        .flow-shell {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr);
-            gap: 24px;
-        }
+        .flow-shell { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
 
         .step-panel {
-            border-radius: 28px;
-            padding: 30px;
+            border-radius: 28px; padding: 30px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             background: rgba(4, 4, 8, 0.75);
             box-shadow: 0 25px 65px rgba(0, 0, 0, 0.55);
         }
 
-        .step {
-            display: none;
-        }
-
-        .step.active {
-            display: block;
-            animation: fadeSlide 0.4s ease;
-        }
-
-        .step-header {
-            margin-bottom: 24px;
-        }
+        .step { display: none; }
+        .step.active { display: block; animation: fadeSlide 0.4s ease; }
+        .step-header { margin-bottom: 24px; }
 
         .step-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 999px;
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 10px;
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 4px 12px; background: rgba(255, 255, 255, 0.05);
+            border-radius: 999px; font-size: 13px; color: var(--text-muted); margin-bottom: 10px;
         }
 
-        .step-header h3 {
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
+        .step-header h3 { font-size: 28px; margin-bottom: 12px; }
+        .step-header p { color: var(--text-muted); line-height: 1.5; }
 
-        .step-header p {
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        .method-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            margin-bottom: 24px;
-            max-width: 400px;
-        }
+        .method-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 24px; max-width: 400px; }
 
         .method-card {
-            border-radius: 20px;
-            padding: 24px;
+            border-radius: 20px; padding: 24px;
             border: 1px solid rgba(255, 255, 255, 0.08);
             background: rgba(255, 255, 255, 0.02);
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+            display: flex; flex-direction: column; gap: 16px;
             transition: border-color 0.3s ease, transform 0.3s ease;
         }
 
-        .method-card:hover {
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-4px);
-        }
-
-        .method-card strong {
-            font-size: 17px;
-        }
-
-        .method-meta {
-            font-size: 14px;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: space-between;
-        }
+        .method-card:hover { border-color: rgba(255, 255, 255, 0.3); transform: translateY(-4px); }
+        .method-card strong { font-size: 17px; }
+        .method-meta { font-size: 14px; color: var(--text-muted); display: flex; justify-content: space-between; }
 
         .method-card button {
-            border: none;
-            border-radius: 14px;
-            padding: 14px;
-            color: #040405;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 15px;
+            border: none; border-radius: 14px; padding: 14px;
+            color: #040405; font-weight: 600; cursor: pointer; font-size: 15px;
             transition: transform 0.3s ease;
             background: linear-gradient(120deg, #357cff, #6de7ff);
         }
 
-        .method-card button:hover {
-            transform: translateY(-3px);
-        }
+        .method-card button:hover { transform: translateY(-3px); }
 
-        ul.step-list {
-            list-style: none;
-            display: grid;
-            gap: 12px;
-            margin-bottom: 10px;
-        }
+        ul.step-list { list-style: none; display: grid; gap: 12px; margin-bottom: 10px; }
+        ul.step-list li { padding-left: 28px; position: relative; color: var(--text-muted); line-height: 1.5; }
+        ul.step-list li::before { content: '\2022'; position: absolute; left: 8px; color: var(--brand-alt); }
 
-        ul.step-list li {
-            padding-left: 28px;
-            position: relative;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        ul.step-list li::before {
-            content: '•';
-            position: absolute;
-            left: 8px;
-            color: var(--brand-alt);
-        }
-
-        .loading {
-            text-align: center;
-            padding: 50px 10px;
-        }
-
+        .loading { text-align: center; padding: 50px 10px; }
         .loading .spinner {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
+            width: 70px; height: 70px; border-radius: 50%;
             border: 5px solid rgba(255, 255, 255, 0.12);
             border-top-color: var(--brand);
-            margin: 0 auto 24px;
-            animation: spin 1s linear infinite;
+            margin: 0 auto 24px; animation: spin 1s linear infinite;
         }
-
-        .loading p {
-            color: var(--text-muted);
-            font-size: 16px;
-        }
+        .loading p { color: var(--text-muted); font-size: 16px; }
 
         .progress-bar {
-            width: 100%;
-            height: 6px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.08);
-            overflow: hidden;
-            margin-bottom: 20px;
+            width: 100%; height: 6px; border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08); overflow: hidden; margin-bottom: 20px;
         }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #357cff, #6de7ff);
-            transition: width 0.3s ease;
-        }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #357cff, #6de7ff); transition: width 0.3s ease; }
 
         .key-display {
-            border-radius: 24px;
-            padding: 24px;
+            border-radius: 24px; padding: 24px;
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            margin: 24px 0;
+            border: 1px solid rgba(255, 255, 255, 0.12); margin: 24px 0;
         }
 
         .key-text {
-            font-family: 'Space Grotesk', monospace;
-            font-size: 22px;
-            padding: 20px;
-            border-radius: 16px;
+            font-family: 'Space Grotesk', monospace; font-size: 22px;
+            padding: 20px; border-radius: 16px;
             background: rgba(10, 10, 18, 0.85);
             border: 1px dashed rgba(255, 255, 255, 0.25);
-            text-align: center;
-            color: var(--brand-alt);
+            text-align: center; color: var(--brand-alt);
         }
 
         .copy-btn {
-            width: 100%;
-            margin-top: 20px;
-            border-radius: 16px;
+            width: 100%; margin-top: 20px; border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.12);
-            background: transparent;
-            color: var(--text-primary);
-            font-weight: 600;
-            padding: 16px;
-            cursor: pointer;
+            background: transparent; color: var(--text-primary);
+            font-weight: 600; padding: 16px; cursor: pointer;
             transition: background 0.3s ease;
         }
 
-        .copy-btn:hover {
-            background: rgba(255, 255, 255, 0.08);
-        }
+        .copy-btn:hover { background: rgba(255, 255, 255, 0.08); }
 
-        footer {
-            margin-top: 70px;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        footer a {
-            color: var(--brand-blue);
-            text-decoration: none;
-        }
+        footer { margin-top: 70px; text-align: center; color: var(--text-muted); font-size: 14px; }
+        footer a { color: var(--brand-blue); text-decoration: none; }
 
         .captcha-overlay {
-            position: fixed;
-            inset: 0;
+            position: fixed; inset: 0;
             background: rgba(0, 0, 0, 0.75);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(12px);
-            z-index: 5;
+            display: flex; align-items: center; justify-content: center;
+            backdrop-filter: blur(12px); z-index: 5;
             transition: opacity 0.35s ease;
         }
-
-        .captcha-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
+        .captcha-overlay.hidden { opacity: 0; pointer-events: none; }
 
         .captcha-modal {
-            width: min(420px, 90vw);
-            border-radius: 28px;
-            padding: 32px;
+            width: min(420px, 90vw); border-radius: 28px; padding: 32px;
             background: rgba(8, 8, 14, 0.95);
             border: 1px solid rgba(255, 255, 255, 0.07);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
-            text-align: center;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55); text-align: center;
         }
+        .captcha-modal h2 { font-size: 26px; margin-bottom: 8px; color: var(--brand); }
+        .captcha-modal p { color: var(--text-muted); margin-bottom: 20px; }
+        #captchaStatus { font-size: 14px; margin-top: 14px; }
 
-        .captcha-modal h2 {
-            font-size: 26px;
-            margin-bottom: 8px;
-            color: var(--brand);
+        .error-banner {
+            background: rgba(255, 60, 60, 0.12);
+            border: 1px solid rgba(255, 60, 60, 0.3);
+            border-radius: 16px; padding: 16px 20px;
+            color: #ff8888; font-size: 15px; margin-bottom: 20px;
+            display: none;
         }
+        .error-banner.visible { display: block; }
 
-        .captcha-modal p {
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
-
-        #captchaStatus {
-            font-size: 14px;
-            margin-top: 14px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes fadeSlide {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes pulseWord {
-            0%, 100% { text-shadow: 0 0 18px rgba(109, 231, 255, 0.35); }
-            50% { text-shadow: 0 0 30px rgba(53, 124, 255, 0.8); }
-        }
-
-        @keyframes fadeOut {
-            to { opacity: 0; transform: translateY(-8px); }
-        }
-
-        @keyframes tagGlow {
-            0% { box-shadow: 0 10px 35px rgba(53, 124, 255, 0.2); }
-            50% { box-shadow: 0 18px 45px rgba(109, 231, 255, 0.45); }
-            100% { box-shadow: 0 10px 35px rgba(53, 124, 255, 0.2); }
-        }
-
-        @keyframes pulseDot {
-            0%, 100% { transform: scale(1); opacity: 0.85; }
-            50% { transform: scale(1.6); opacity: 0.4; }
-        }
-
-        @keyframes blinkCaret {
-            0%, 60% { opacity: 1; }
-            60.1%, 100% { opacity: 0; }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes fadeSlide { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulseWord { 0%, 100% { text-shadow: 0 0 18px rgba(109, 231, 255, 0.35); } 50% { text-shadow: 0 0 30px rgba(53, 124, 255, 0.8); } }
+        @keyframes fadeOut { to { opacity: 0; transform: translateY(-8px); } }
+        @keyframes tagGlow { 0% { box-shadow: 0 10px 35px rgba(53, 124, 255, 0.2); } 50% { box-shadow: 0 18px 45px rgba(109, 231, 255, 0.45); } 100% { box-shadow: 0 10px 35px rgba(53, 124, 255, 0.2); } }
+        @keyframes pulseDot { 0%, 100% { transform: scale(1); opacity: 0.85; } 50% { transform: scale(1.6); opacity: 0.4; } }
+        @keyframes blinkCaret { 0%, 60% { opacity: 1; } 60.1%, 100% { opacity: 0; } }
 
         @media (max-width: 768px) {
-            body {
-                padding: 24px 16px 60px;
-            }
-
-            .nav {
-                flex-direction: column;
-                gap: 16px;
-            }
-
-            .swap-wrap {
-                height: auto;
-            }
-
-            .hero-dynamic {
-                white-space: normal;
-            }
-
-            .terminal-card {
-                margin-top: 20px;
-                min-height: 260px;
-            }
-
-            .cta-row {
-                flex-direction: column;
-            }
-
-            .step-panel {
-                padding: 22px;
-            }
+            body { padding: 24px 16px 60px; }
+            .nav { flex-direction: column; gap: 16px; }
+            .swap-wrap { height: auto; }
+            .hero-dynamic { white-space: normal; }
+            .terminal-card { margin-top: 20px; min-height: 260px; }
+            .cta-row { flex-direction: column; }
+            .step-panel { padding: 22px; }
         }
     </style>
 </head>
@@ -665,139 +363,95 @@
         <div class="nav-links">
             <a href="#metodos">Como Funciona</a>
             <a href="https://vacexternal.netlify.app/" target="_blank" rel="noopener">Site Oficial</a>
-            <a href="https://discord.gg/vacexternal" target="_blank" rel="noopener">Suporte</a>
         </div>
-        <a class="discord-pill" href="https://discord.gg/vacexternal" target="_blank" rel="noopener">Discord Oficial →</a>
     </header>
 
     <main class="page">
         <section class="hero" id="home">
             <div class="hero-content">
-                <span class="tag"><span class="tag-dot"></span>Chaves gratuitas • 4 horas • Dados protegidos</span>
-                <h1>
-                    <span class="hero-highlight">O melhor external</span>
-                    <span class="swap-wrap"><span id="heroDynamicWord" class="hero-dynamic">desenvolvido por brasileiros</span></span>
-                    <span>com experiência premium garantida.</span>
-                </h1>
+                <h1>Free Key VacExternal</h1>
                 <p class="lead">
-                    Segurança com Cloudflare + hCaptcha, verificação humana obrigatória e geração automática
-                    de key via Worker dedicado. Complete os 2 links, volte para a página e receba sua licença
-                    de 4 horas para aproveitar o VacExternal.
+                    Complete os dois links do Work.ink e volte para receber uma key de 4 horas.
                 </p>
                 <div class="cta-row">
-                    <button class="btn-primary" onclick="startWorkinkProcess()">🔗 Gerar Key Grátis (4h)</button>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat-card">
-                        <strong>4h</strong>
-                        Free key por sessão
-                    </div>
-                    <div class="stat-card">
-                        <strong>2 links</strong>
-                        Rápido (~5 min)
-                    </div>
-                    <div class="stat-card">
-                        <strong>0 Bans</strong>
-                        Bypass Roblox
-                    </div>
+                    <button class="btn-primary" onclick="startWorkinkProcess()">Abrir Work.ink</button>
                 </div>
             </div>
-            <div class="terminal-card">
-                <pre id="terminalCode"></pre>
-            </div>
-        </section>
-
-        <section class="experience-grid" id="beneficios">
-            <article class="experience-card">
-                <h4>Segurança</h4>
-                <p>Controle total das keys, tokens únicos e registros criptografados evitam vazamentos e bots.</p>
-            </article>
-            <article class="experience-card">
-                <h4>Estabilidade</h4>
-                <p>Worker dedicado roda 24/7; se os links abrirem, sua licença volta com a mesma fluidez.</p>
-            </article>
-            <article class="experience-card">
-                <h4>Confiança</h4>
-                <p>Equipe presente no Discord para validar dúvidas e liberar chaves extras quando necessário.</p>
-            </article>
-            <article class="experience-card">
-                <h4>Extrema qualidade</h4>
-                <p>Melhores funções, diferentes jogos suportados.</p>
-            </article>
         </section>
 
         <section class="flow-shell" id="metodos">
             <div class="step-panel">
+                <!-- Step 1: Method selection -->
                 <div id="step1" class="step active">
                     <div class="step-header">
-                        <span class="step-tag">Passo inicial</span>
-                        <h3>Gere sua key gratuita</h3>
-                        <p>Resolva o captcha, complete os 2 links do Work.ink e sua key será gerada automaticamente.</p>
+                        <span class="step-tag">4 horas de acesso</span>
+                        <h3>Gerar key gratuita</h3>
+                        <p>Conclua os dois links do Work.ink. A verifica&ccedil;&atilde;o aparece ao final.</p>
                     </div>
+                    <div id="step1Error" class="error-banner"></div>
                     <div class="method-grid">
                         <article class="method-card">
-                            <strong>Work.ink • 2 links rápidos</strong>
+                            <strong>Work.ink &bull; 2 etapas</strong>
                             <div class="method-meta">
-                                <span>🕒 4 horas de acesso</span>
-                                <span>Tempo médio ~5 min</span>
+                                <span>&#x1F550; 4 horas de acesso</span>
+                                <span>Dois links</span>
                             </div>
-                            <button onclick="startWorkinkProcess()">Começar Agora</button>
+                            <button onclick="startWorkinkProcess()">Abrir link</button>
                         </article>
                     </div>
                     <ul class="step-list">
-                        <li>Não feche esta aba; retornaremos automaticamente após cada link.</li>
-                        <li>O processo expira em 20 minutos, então complete rapidamente.</li>
-                        <li>O captcha precisa estar verde antes de abrir qualquer link.</li>
+                        <li>Abriremos os links nesta aba. Ap&oacute;s cada conclus&atilde;o, voc&ecirc; volta aqui.</li>
+                        <li>A key &eacute; liberada somente ap&oacute;s a confirma&ccedil;&atilde;o do Work.ink.</li>
                     </ul>
                 </div>
 
+                <!-- Step 2: Work.ink -->
                 <div id="step2" class="step">
                     <div class="step-header">
-                        <span class="step-tag">Work.ink • Passo 1/2</span>
-                        <h3>Complete o primeiro link</h3>
-                        <p>Aguarde o redirecionamento automático. Se o navegador bloquear pop-ups, permita.</p>
+                        <span class="step-tag">Work.ink 1/2</span>
+                        <h3>Abrindo o primeiro link</h3>
+                        <p>Aguarde o redirecionamento.</p>
                     </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width:50%;"></div></div>
                     <div class="loading">
                         <div class="spinner"></div>
-                        <p>Enviando você ao Work.ink #1...</p>
+                        <p>Conectando ao Work.ink...</p>
                     </div>
                 </div>
 
                 <div id="step3" class="step">
                     <div class="step-header">
-                        <span class="step-tag">Work.ink • Passo 2/2</span>
-                        <h3>Só falta o segundo link</h3>
-                        <p>Finalize a segunda página e você volta direto para a geração da licença.</p>
+                        <span class="step-tag">Work.ink 2/2</span>
+                        <h3>Abrindo o segundo link</h3>
+                        <p>Aguarde o redirecionamento.</p>
                     </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width:100%;"></div></div>
-                    <div class="loading">
-                        <div class="spinner"></div>
-                        <p>Abrindo Work.ink #2 automaticamente...</p>
-                    </div>
+                    <div class="loading"><div class="spinner"></div><p>Conectando ao Work.ink...</p></div>
                 </div>
 
+                <!-- Step 4: Generating key -->
                 <div id="step4" class="step">
                     <div class="step-header">
-                        <span class="step-tag">KeyAuth</span>
-                        <h3>Criando sua licença segura</h3>
+                        <span class="step-tag">Gera&ccedil;&atilde;o</span>
+                        <h3>Criando sua licen&ccedil;a segura</h3>
                         <p>Validando token e captcha. Pode levar alguns segundos.</p>
                     </div>
+                    <div id="step4Error" class="error-banner"></div>
+                    <button id="retryButton" class="btn-primary" style="display:none" onclick="showStep(1)">Voltar ao in&iacute;cio</button>
                     <div class="loading">
                         <div class="spinner"></div>
-                        <p>Criando licença no KeyAuth...</p>
+                        <p id="step4Status">Criando licen&ccedil;a...</p>
                     </div>
                 </div>
 
+                <!-- Step 5: Key generated -->
                 <div id="step5" class="step">
                     <div class="step-header">
                         <span class="step-tag">Pronto!</span>
                         <h3>Key liberada com sucesso</h3>
-                        <p>Copie abaixo e use no VacExternal (Opção 4 — Free Version).</p>
+                        <p>Copie abaixo e use no VacExternal (Op&ccedil;&atilde;o 4 &mdash; Free Version).</p>
                     </div>
                     <div class="key-display">
                         <div class="key-text" id="generatedKey">Gerando...</div>
-                        <button class="copy-btn" onclick="copyKey()">📋 Copiar Key</button>
+                        <button class="copy-btn" onclick="copyKey()">&#x1F4CB; Copiar Key</button>
                     </div>
                     <ul class="step-list">
                         <li>Abra o VacExternal.exe e selecione <strong>[4] Free Version</strong>.</li>
@@ -805,33 +459,33 @@
                         <li>Ao expirar, volte e gere novamente seguindo o fluxo.</li>
                     </ul>
                     <p style="text-align:center;margin-top:20px;font-weight:600;color:var(--brand-alt);">
-                        ⏰ Esta licença vale por 4 horas a partir da ativação.
+                        &#x23F0; Esta licen&ccedil;a vale por 4 horas a partir da ativa&ccedil;&atilde;o.
                     </p>
                 </div>
             </div>
         </section>
 
         <footer id="suporte">
-            <p><strong>VacExternal</strong> © 2026 • Todos os direitos reservados</p>
-            <p>Suporte oficial: <a href="https://discord.gg/vacexternal" target="_blank" rel="noopener">discord.gg/vacexternal</a></p>
+            <p><strong>VacExternal</strong> &copy; 2026 &bull; Todos os direitos reservados</p>
         </footer>
     </main>
 
     <div class="captcha-overlay" id="captchaOverlay">
         <div class="captcha-modal">
             <p style="letter-spacing:0.24em;text-transform:uppercase;font-size:12px;color:var(--text-muted);">VacExternal Security Layer</p>
-            <h2>Verificação de Segurança</h2>
-            <p>Por favor, complete a verificação humana para continuar.</p>
+            <h2>Verifica&ccedil;&atilde;o de Seguran&ccedil;a</h2>
+            <p>Por favor, complete a verifica&ccedil;&atilde;o humana para continuar.</p>
             <div id="captchaContainer" data-sitekey="2714a6d4-341a-4622-b80c-e014f06c761e"></div>
             <p id="captchaStatus">Carregando hCaptcha...</p>
         </div>
     </div>
 
     <script>
+        // ─── Hero dynamic text ───
         const heroWords = [
             'desenvolvido por brasileiros',
-            'com suporte e updates diários',
-            'para quem exige segurança total'
+            'com suporte e updates di\u00e1rios',
+            'para quem exige seguran\u00e7a total'
         ];
         const heroWordElement = document.getElementById('heroDynamicWord');
         let heroWordIndex = 0;
@@ -843,13 +497,10 @@
 
         function handleHeroTyping() {
             if (!heroWordElement) return;
-
             const currentWord = heroWords[heroWordIndex];
-
             if (heroTypingForward) {
                 heroCharIndex++;
                 heroWordElement.textContent = currentWord.slice(0, heroCharIndex);
-
                 if (heroCharIndex === currentWord.length) {
                     heroTypingForward = false;
                     setTimeout(handleHeroTyping, HERO_HOLD_DELAY);
@@ -859,7 +510,6 @@
             } else {
                 heroCharIndex--;
                 heroWordElement.textContent = currentWord.slice(0, Math.max(heroCharIndex, 0));
-
                 if (heroCharIndex <= 0) {
                     heroTypingForward = true;
                     heroWordIndex = (heroWordIndex + 1) % heroWords.length;
@@ -875,6 +525,7 @@
             setTimeout(handleHeroTyping, 400);
         }
 
+        // ─── Terminal code animation ───
         const terminalSnippet = [
             '#include <iostream>',
             '#include "VacExternalLab.hpp"',
@@ -902,18 +553,14 @@
 
         if (terminalCard) {
             const terminalLines = terminalSnippet.split('\n').length;
-            const lineHeightPx = 22;
-            const paddingAllowance = 80;
-            terminalCard.style.minHeight = (terminalLines * lineHeightPx + paddingAllowance) + 'px';
+            terminalCard.style.minHeight = (terminalLines * 22 + 80) + 'px';
         }
 
         function handleTerminalTyping() {
             if (!terminalElement) return;
-
             if (terminalTypingForward) {
                 terminalCharIndex++;
                 terminalElement.textContent = terminalSnippet.slice(0, terminalCharIndex);
-
                 if (terminalCharIndex === terminalSnippet.length) {
                     terminalTypingForward = false;
                     setTimeout(handleTerminalTyping, TERMINAL_HOLD_DELAY);
@@ -924,7 +571,6 @@
             } else {
                 terminalCharIndex--;
                 terminalElement.textContent = terminalSnippet.slice(0, Math.max(terminalCharIndex, 0));
-
                 if (terminalCharIndex <= 0) {
                     terminalTypingForward = true;
                     setTimeout(handleTerminalTyping, 500);
@@ -938,11 +584,10 @@
             setTimeout(handleTerminalTyping, 600);
         }
 
-        const PROCESS_DEADLINE = 20 * 60 * 1000; // 20 minutos
+        // ─── Configuration ───
         const WORKER_URL = "https://vacexternal-keys.outlier872.workers.dev";
-        const WORKINK_LINK_1 = "https://work.ink/28kn/vacexternal-4h-key";
-        const WORKINK_LINK_2 = "https://work.ink/28kn/vacexternal-get-key";
-        
+
+        // ─── Captcha state ───
         const captchaStatusElement = document.getElementById('captchaStatus');
         const captchaOverlayElement = document.getElementById('captchaOverlay');
         let captchaWidgetId = null;
@@ -957,49 +602,48 @@
             document.body.classList.toggle('overlay-active', visible);
         }
 
-        toggleCaptchaOverlay(true);
+        toggleCaptchaOverlay(false);
 
-        function setProcessDeadline() {
-            sessionStorage.setItem('token_deadline', (Date.now() + PROCESS_DEADLINE).toString());
-        }
-
-        function updateCaptchaStatus(message, color = '#cfcfcf') {
+        function updateCaptchaStatus(message, color) {
             if (captchaStatusElement) {
                 captchaStatusElement.textContent = message;
-                captchaStatusElement.style.color = color;
+                if (color) captchaStatusElement.style.color = color;
             }
         }
 
-        function flushCaptchaResolvers(token) {
-            captchaResolvers.forEach(resolve => resolve(token));
+        function flushCaptchaResolvers(token, error) {
+            captchaResolvers.forEach(function(entry) {
+                clearTimeout(entry.timer);
+                if (error) entry.reject(error);
+                else entry.resolve(token);
+            });
             captchaResolvers = [];
         }
 
         function waitForCaptchaReady() {
-            if (captchaReady && window.hcaptcha) {
-                return Promise.resolve();
-            }
-            return new Promise(resolve => {
-                captchaReadyResolvers.push(resolve);
+            if (captchaReady && window.hcaptcha) return Promise.resolve();
+            return new Promise(function(resolve, reject) {
+                var timer = setTimeout(function() {
+                    reject(new Error('O hCaptcha n\u00e3o carregou. Desative o bloqueador de scripts nesta p\u00e1gina e tente novamente.'));
+                }, 15000);
+                captchaReadyResolvers.push(function() { clearTimeout(timer); resolve(); });
             });
         }
 
-        async function demandCaptchaToken(forceRefresh = false) {
+        async function demandCaptchaToken(forceRefresh) {
             if (!captchaReady || !window.hcaptcha) {
                 await waitForCaptchaReady();
             }
-
             if (forceRefresh && window.hcaptcha && captchaWidgetId !== null) {
                 window.hcaptcha.reset(captchaWidgetId);
                 captchaToken = null;
             }
-
-            if (captchaToken) {
-                return captchaToken;
-            }
-
-            return new Promise(resolve => {
-                captchaResolvers.push(resolve);
+            if (captchaToken) return captchaToken;
+            return new Promise(function(resolve, reject) {
+                var timer = setTimeout(function() {
+                    reject(new Error('O captcha demorou demais. Atualize a p\u00e1gina e recomece.'));
+                }, 120000);
+                captchaResolvers.push({ resolve: resolve, reject: reject, timer: timer });
                 updateCaptchaStatus('Resolva o captcha para liberar a key gratuita.', '#ff8c00');
                 toggleCaptchaOverlay(true);
             });
@@ -1010,28 +654,20 @@
             if (window.hcaptcha && captchaWidgetId !== null) {
                 window.hcaptcha.reset(captchaWidgetId);
             }
-            updateCaptchaStatus('Resolva o captcha novamente para gerar outra key.');
-            toggleCaptchaOverlay(true);
-        }
-
-        function ensureCaptchaSolved() {
-            if (captchaToken) return true;
-            updateCaptchaStatus('⚠️ Complete o captcha antes de continuar.', '#ff6666');
-            toggleCaptchaOverlay(true);
-            return false;
         }
 
         function onCaptchaSuccess(token) {
             captchaToken = token;
-            updateCaptchaStatus('✅ Captcha validado. Complete os links para receber sua key.', '#00ffaa');
+            updateCaptchaStatus('\u2705 Captcha validado. Complete os links para receber sua key.', '#00ffaa');
             flushCaptchaResolvers(token);
             toggleCaptchaOverlay(false);
         }
 
         function onCaptchaError() {
             captchaToken = null;
+            flushCaptchaResolvers(null, new Error('O captcha falhou. Atualize a p\u00e1gina e tente novamente.'));
             updateCaptchaStatus('Captcha falhou. Recarregue e tente novamente.', '#ff6666');
-            toggleCaptchaOverlay(true);
+            toggleCaptchaOverlay(false);
         }
 
         function onCaptchaExpired() {
@@ -1041,203 +677,208 @@
         }
 
         window.onHCaptchaLoad = function() {
-            const container = document.getElementById('captchaContainer');
+            var container = document.getElementById('captchaContainer');
             if (!container) return;
-
-            const siteKey = container.dataset.sitekey || '';
+            var siteKey = container.dataset.sitekey || '';
             if (!siteKey || siteKey.includes('REPLACE')) {
                 updateCaptchaStatus('Defina o site key do hCaptcha no HTML antes de publicar o site.', '#ff6666');
                 return;
             }
-
             captchaWidgetId = hcaptcha.render('captchaContainer', {
                 sitekey: siteKey,
                 callback: onCaptchaSuccess,
                 'error-callback': onCaptchaError,
                 'expired-callback': onCaptchaExpired
             });
-
             captchaReady = true;
-            captchaReadyResolvers.forEach(resolve => resolve());
+            captchaReadyResolvers.forEach(function(resolve) { resolve(); });
             captchaReadyResolvers = [];
-            updateCaptchaStatus('Resolva o captcha antes de abrir os links. Sem isso a key não é liberada.');
+            updateCaptchaStatus('Resolva o captcha antes de abrir os links. Sem isso a key n\u00E3o \u00E9 liberada.');
         };
 
-        function generateToken() {
-            return 'tok_' + Date.now() + '_' + Math.random().toString(36).substring(2, 15);
+        // ─── Work.ink flow ───
+        async function openWorkinkStep(step) {
+            showStep(step === 1 ? 2 : 3);
+            try {
+                var response = await fetch(WORKER_URL + '/start?step=' + step);
+                var data = await response.json();
+                if (!response.ok || !data.success || !data.url) {
+                    throw new Error(data.error || 'O link est\u00e1 indispon\u00edvel agora.');
+                }
+                window.location.assign(data.url);
+            } catch (error) {
+                showStep(1);
+                var errorEl = document.getElementById('step1Error');
+                errorEl.textContent = error.message;
+                errorEl.classList.add('visible');
+            }
         }
 
         function startWorkinkProcess() {
-            if (!ensureCaptchaSolved()) return;
-            
-            const token = generateToken();
-            sessionStorage.setItem('workink_token', token);
-            sessionStorage.setItem('key_method', 'workink');
-            sessionStorage.setItem('workink_step', '1');
-            setProcessDeadline();
-            
-            console.log('🎫 Token gerado:', token.substring(0, 20) + '...');
-            showStep(2);
-            
-            setTimeout(() => {
-                window.location.href = WORKINK_LINK_1 + '?redirect=' + encodeURIComponent(window.location.origin + window.location.pathname + '?completed=step1');
-            }, 1800);
+            sessionStorage.removeItem('workink_step1_token');
+            openWorkinkStep(1);
         }
 
-        async function generateKey() {
+        // ─── Key generation (calls worker) ───
+        async function generateKey(step1Token, step2Token) {
+            var errorEl = document.getElementById('step4Error');
+            var statusEl = document.getElementById('step4Status');
             try {
-                const token = sessionStorage.getItem('workink_token');
-                const deadlineRaw = sessionStorage.getItem('token_deadline');
+                if (statusEl) statusEl.textContent = 'Resolva o captcha abaixo para liberar a key...';
+                updateCaptchaStatus('Resolva o captcha novamente para gerar sua key.', '#ff8c00');
+                toggleCaptchaOverlay(true);
 
-                if (!token) {
-                    alert('❌ Token expirou ou não foi gerado corretamente.\n\nReinicie o processo.');
-                    showStep(1);
-                    return null;
-                }
+                var captchaProof = await demandCaptchaToken(true);
 
-                const deadline = deadlineRaw ? parseInt(deadlineRaw, 10) : null;
-                if (deadline && Date.now() > deadline) {
-                    alert('⏰ O processo ultrapassou o limite de 20 minutos.\n\nComece novamente.');
-                    sessionStorage.clear();
-                    showStep(1);
-                    return null;
-                }
+                if (statusEl) statusEl.textContent = 'Gerando licen\u00E7a no servidor...';
 
-                const captchaProof = await demandCaptchaToken(false);
-                const requestBody = {
-                    token: token,
-                    method: 'workink',
+                var requestBody = {
+                    step1Token: step1Token,
+                    step2Token: step2Token,
                     captchaToken: captchaProof
                 };
 
-                const response = await fetch(WORKER_URL + '/generate-key', {
+                var response = await fetch(WORKER_URL + '/generate-key', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(requestBody)
                 });
 
-                const data = await response.json();
+                var data = await response.json();
 
                 if (data.success) {
-                    sessionStorage.clear();
+                    sessionStorage.removeItem('workink_step1_token');
                     return data.key;
                 }
 
                 if (response.status === 429) {
-                    alert('⏰ Você já gerou uma key recentemente!\n\n' + data.error);
+                    showErrorAndReset(errorEl, '\u23F0 Voc\u00EA j\u00E1 gerou uma key recentemente!\n\n' + data.error);
                 } else if (response.status === 403) {
-                    alert('🚫 ' + data.error + '\n\nComplete o processo novamente.');
+                    showErrorAndReset(errorEl, '\uD83D\uDEAB ' + data.error);
+                } else if (response.status === 451) {
+                    showErrorAndReset(errorEl, '\uD83D\uDEAB VPN/Proxy detectado. Desative sua VPN e tente novamente.');
                 } else {
-                    alert('❌ Erro: ' + data.error);
+                    showErrorAndReset(errorEl, '\u274C Erro: ' + (data.error || 'Erro desconhecido'));
                 }
                 return null;
             } catch (error) {
-                alert('❌ Erro ao conectar com o servidor!\n\nDetalhes: ' + error.message);
+                showErrorAndReset(errorEl, '\u274C Erro ao conectar com o servidor: ' + error.message);
                 return null;
             } finally {
                 invalidateCaptchaToken();
+                toggleCaptchaOverlay(false);
             }
         }
 
+        function showErrorAndReset(errorEl, message) {
+            if (errorEl) {
+                errorEl.textContent = message;
+                errorEl.classList.add('visible');
+            }
+            var retryButton = document.getElementById('retryButton');
+            if (retryButton) retryButton.style.display = 'inline-flex';
+        }
+
+        // ─── Page load handler (Work.ink redirect returns) ───
         window.addEventListener('load', async function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const completed = urlParams.get('completed');
-
-            console.log('🌐 Página carregada!');
-            console.log('🔍 Completed:', completed);
-
-            if (completed === 'step1') {
-                console.log('✅ Step 1 completo, indo para Step 2...');
-                sessionStorage.setItem('workink_step', '2');
-                showStep(3);
-                setTimeout(() => {
-                    window.location.href = WORKINK_LINK_2 + '?redirect=' + encodeURIComponent(window.location.origin + window.location.pathname + '?completed=step2');
-                }, 1800);
-            } else if (completed === 'step2') {
-                const hasToken = sessionStorage.getItem('workink_token');
-
-                if (!hasToken) {
-                    console.error('❌ Token não encontrado!');
-                    alert('❌ Erro: Token não encontrado!\n\nTente novamente em uma janela normal do navegador.');
-                    showStep(1);
+            var urlParams = new URLSearchParams(window.location.search);
+            var workinkToken = urlParams.get('workink_token');
+            var step = Number(urlParams.get('step'));
+            if (workinkToken && step === 1) {
+                history.replaceState(null, '', window.location.pathname);
+                sessionStorage.setItem('workink_step1_token', workinkToken);
+                await openWorkinkStep(2);
+            } else if (workinkToken && step === 2) {
+                history.replaceState(null, '', window.location.pathname);
+                var firstToken = sessionStorage.getItem('workink_step1_token');
+                if (!firstToken) {
+                    var errEl = document.getElementById('step1Error');
+                    errEl.textContent = 'A primeira etapa n\u00e3o foi encontrada nesta aba. Comece novamente.';
+                    errEl.classList.add('visible');
                     return;
                 }
-
-                console.log('✅ Processo completo! Gerando key de 4 horas...');
                 showStep(4);
-                updateCaptchaStatus('Resolva o captcha novamente para liberar sua key.', '#ff8c00');
-                invalidateCaptchaToken();
-
-                const key = await generateKey();
-
+                var key = await generateKey(firstToken, workinkToken);
                 if (key) {
-                    console.log('🎉 Key de 4h gerada com sucesso!');
                     document.getElementById('generatedKey').textContent = key;
                     showStep(5);
-                } else {
-                    console.error('❌ Falha ao gerar key!');
-                    showStep(1);
                 }
+            } else if (urlParams.has('completed')) {
+                history.replaceState(null, '', window.location.pathname);
+                var errEl = document.getElementById('step1Error');
+                errEl.textContent = 'O link antigo n\u00e3o confirma mais a conclus\u00e3o. Inicie novamente pelo bot\u00e3o abaixo.';
+                errEl.classList.add('visible');
             } else {
-                console.log('ℹ️ Usuário na página inicial');
-                sessionStorage.clear();
+                try {
+                    var health = await (await fetch(WORKER_URL + '/health')).json();
+                    if (!health.issuing) {
+                        document.querySelectorAll('[onclick="startWorkinkProcess()"]').forEach(function(button) { button.disabled = true; });
+                        var errEl = document.getElementById('step1Error');
+                        errEl.textContent = 'A emiss\u00e3o de keys est\u00e1 temporariamente indispon\u00edvel.';
+                        errEl.classList.add('visible');
+                    }
+                } catch (error) {
+                    var errEl = document.getElementById('step1Error');
+                    errEl.textContent = 'N\u00e3o foi poss\u00edvel verificar o servidor. Atualize a p\u00e1gina mais tarde.';
+                    errEl.classList.add('visible');
+                }
             }
         });
 
+        // ─── Copy key ───
         function copyKey() {
-            const keyText = document.getElementById('generatedKey').textContent;
-            navigator.clipboard.writeText(keyText).then(() => {
-                const btn = event.target;
-                const originalText = btn.textContent;
-                btn.textContent = '✅ Copiado!';
+            var keyText = document.getElementById('generatedKey').textContent;
+            navigator.clipboard.writeText(keyText).then(function() {
+                var btn = document.querySelector('.copy-btn');
+                var originalText = btn.textContent;
+                btn.textContent = '\u2705 Copiado!';
                 btn.style.background = 'linear-gradient(120deg, #00ff7f, #00c853)';
                 btn.style.borderColor = 'rgba(0, 255, 127, 0.6)';
-                setTimeout(() => {
+                setTimeout(function() {
                     btn.textContent = originalText;
                     btn.style.background = 'transparent';
                     btn.style.borderColor = 'rgba(255, 255, 255, 0.12)';
                 }, 2500);
-            }).catch(() => {
-                alert('Erro ao copiar. Selecione e copie manualmente: ' + keyText);
+            }).catch(function() {
+                prompt('Copie a key manualmente:', keyText);
             });
         }
 
+        // ─── Step navigation ───
         function showStep(stepNumber) {
-            document.querySelectorAll('.step').forEach(step => {
-                step.classList.remove('active');
-            });
-            const target = document.getElementById('step' + stepNumber);
+            document.querySelectorAll('.step').forEach(function(step) { step.classList.remove('active'); });
+            document.querySelectorAll('.error-banner').forEach(function(el) { el.classList.remove('visible'); });
+            var target = document.getElementById('step' + stepNumber);
             if (target) {
                 target.classList.add('active');
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
 
+        // ─── Terminal card tilt effect ───
         if (terminalCard) {
-            const tiltCard = (event) => {
-                const rect = terminalCard.getBoundingClientRect();
-                const percentX = (event.clientX - rect.left) / rect.width;
-                const percentY = (event.clientY - rect.top) / rect.height;
-                const tiltX = (percentX - 0.5) * 16;
-                const tiltY = (0.5 - percentY) * 12; 
+            terminalCard.addEventListener('pointermove', function(event) {
+                var rect = terminalCard.getBoundingClientRect();
+                var percentX = (event.clientX - rect.left) / rect.width;
+                var percentY = (event.clientY - rect.top) / rect.height;
+                var tiltX = (percentX - 0.5) * 16;
+                var tiltY = (0.5 - percentY) * 12;
                 terminalCard.style.setProperty('--tiltX', tiltX.toFixed(2) + 'deg');
                 terminalCard.style.setProperty('--tiltY', tiltY.toFixed(2) + 'deg');
                 terminalCard.style.setProperty('--glowX', Math.round(percentX * 100) + '%');
                 terminalCard.style.boxShadow = '0 40px 110px rgba(8, 12, 32, 0.78)';
-            };
-
-            const resetTilt = () => {
+            });
+            var resetTilt = function() {
                 terminalCard.style.setProperty('--tiltX', '0deg');
                 terminalCard.style.setProperty('--tiltY', '0deg');
                 terminalCard.style.setProperty('--glowX', '50%');
                 terminalCard.style.boxShadow = '0 25px 70px rgba(4, 10, 30, 0.65)';
             };
-
-            terminalCard.addEventListener('pointermove', tiltCard);
             terminalCard.addEventListener('pointerleave', resetTilt);
             terminalCard.addEventListener('pointerup', resetTilt);
         }
     </script>
+
     <script src="https://js.hcaptcha.com/1/api.js?render=explicit&onload=onHCaptchaLoad" async defer></script>
 </body>
 </html>
